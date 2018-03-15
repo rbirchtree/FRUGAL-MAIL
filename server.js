@@ -5,7 +5,7 @@ app.use(express.static('public'));
 
 app.get('/',(req,res) => {
 	//how to redirect any url
-	res.sendFile(__dirname +`public/index.html`);
+	res.sendFile(__dirname +`docs/index.html`);
 });
 
 
