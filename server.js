@@ -1,18 +1,23 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static('docs'));
 
 app.get('/',(req,res) => {
 	//how to redirect any url
-	res.sendFile(__dirname +`docs/index.html`);
+	res.sendFile(__dirname +`/docs/index.html`);
+	//res.sendFile("/index.html");
+});
+app.get('/about',(req,res) => {
+	//how to redirect any url
+	res.sendFile(__dirname +`/docs/about.html`);
+	//res.sendFile(__dirname"/about.html");
 });
 
-
-app.listen(process.env.PORT || 8080, () =>{
+/*app.listen(process.env.PORT || 8080, () =>{
 	console.log(`Listening on port 8080`);
 });
-
+*/
 let server;
 
 function runServer(){
@@ -41,8 +46,11 @@ function closeServer(){
 	});
 }
 
-if (require.main === module) {
+app.listen(8080,function(){
+	console.log('App listening on port 8080!')
+});
+/*if (require.main === module) {
 	runServer().catch(err => console.error(err));
-};
+};*/
 //what??
 module.exports = {app, runServer, closeServer};
