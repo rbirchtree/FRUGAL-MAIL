@@ -3,10 +3,97 @@
 <head>
 	<title>FMAIL | Frugal Mail</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:400">
 </head>
 <body>
-	<h1>Do I need a seperate schema/ table for my api what about webpages and redirect?</h1>
+	<nav>
+		<img src="..\images\green-mail-icon.png">
+			<ul>
+				<li><a href="about.html">About</a></li>
+				<li><a href="index.html">Log In</a></li>
+			</ul>
+	</nav>
+	<!-- embedded into js -->
+	<div class="container">
+		
+
+			<h1>Upcoming trips</h1>
+
+			<form class="login">
+				<label>User Name</label>
+					<input placeholder="jDoe"></input>
+				<label>Password</label>
+					<input placeholder="123456789"></input>
+				<button>Log In</button>
+			</form>
+		<div class="choices">
+						<!-- when users first login -->
+			<ul>
+				<!-- http://www.rgagnon.com/jsdetails/js-0069.html -->
+				<li>Update Trip</li>
+				<li>Add Trip</li>
+				<li>Delete Trip</li>
+				<li>Search All Trips</li>
+			</ul>
+		</div>
+			<form class="addTrip">
+				<h2>Are You Mailing or Traveling Overseas?</h2>
+				<select name="status" id="mailingTraveling" required>
+					<option value="1">Traveling</option>
+					<option value="2">Mailing</option>
+				</select>
+
+					<input placeholder="Los Angeles,CA"></input>
+				<!-- make drop down later with locations  -->
+				<label>From</label>
+					<input placeholder="Kunming, China"></input>
+				<label>To</label>
+					<textarea rows="5" cols="30" name="address">Billy Bob 123 Lane, Bejing, TX, 90133</textarea>
+				<label>Mailing Address</label>
+					<textarea rows="5" cols="30" name="backStory">I'm yammy going to Kunming for a week! The Chinesse food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
+				<label>Backstory</label><!--backstory place holder changes based on what the selector is.... -->
+				<button type="submit">Add trip</button>
+				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
+
+				<!-- add/post/put method trip inline -->
+			</form>
+			<!-- delete  -->
+				<div class="results">
+					<select name="text">
+						<option value="shipRequstId" selected>return mongo data</option>
+						<!-- will delete user login -->
+					</select>
+					<button>Delete</button>			
+				</div>
+			<!-- update trip  return below-->
+			<!-- first return trips that user has than the updateTrip form -->
+			<!-- later feature update -->
+			<!-- 			<form class="updateTrip">
+				<h2>Are You Mailing or Traveling Overseas?</h2>
+				<select name="status" id="mailingTraveling" required>
+					<option value="1">Traveling</option>
+					<option value="2">Mailing</option>
+				</select>
+					<input placeholder="Los Angeles,CA"></input>
+				make drop down later with locations
+				<label>From</label>
+					<input placeholder="Kunming, China"></input>
+				<label>To</label>
+					<textarea rows="5" cols="30" name="address">Billy Bob 123 Lane, Bejing, TX, 90133</textarea>
+				<label>Mailing Address</label>
+					<textarea rows="5" cols="30" name="backStory">I'm yammy going to Kunming for a week! The Chinesse food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
+				<label>Backstory</label>backstory place holder changes based on what the selector is....
+				<button type="submit">Update trip</button> -->
+				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
+
+				<!-- add/post/put method trip inline -->
+			</form>
+			<div class="results">
+				<!-- return all results for now, no need to create a text search yet -->
+			</div>
+
+	</div>
 </body>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> 
 <script type="text/javascript" src="app.js"></script>

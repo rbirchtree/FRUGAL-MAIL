@@ -21,7 +21,8 @@ var SHIP_MATCH_UPDATES = {
 				"pwd": "123#"
 				//want users to log in for trip
 				//uuid here?
-			}
+			},
+			"packagesRequest":[null,null,{"shipRequestId": "5555"}]
 		},
 		{
 			"shipRequestId": "5555",
@@ -40,7 +41,8 @@ var SHIP_MATCH_UPDATES = {
 			,"userInfo" : {
 				"user":"Billy",
 				"pwd": "pwd"
-			}
+			},
+			"packagesRequest":[null,null,null]
 		},
 		{
 			"shipRequestId": "7894",
@@ -55,7 +57,8 @@ var SHIP_MATCH_UPDATES = {
 			"userInfo":{
 				"user":"Bob",
 				"pwd" : "5445"
-			}
+			},
+			"packagesRequest":[null,null,null]
 		}
 	]
 };
@@ -67,7 +70,7 @@ function getRecentStatusUpdates(callbackFn){
 function displayStatusUpdates(data){
 	for(index in data.shipRequests){
 		//To: ${} From:${} When:${}
-		$('body').append(`<p><b>To: </b> ${data.shipRequests[index].to} <b>From:</b> ${data.shipRequests[index].from} <b>Backstory:</b> ${data.shipRequests[index].backStory}</p>`)
+		$('.container').append(`<p><b>To: </b> ${data.shipRequests[index].to} <b>From:</b> ${data.shipRequests[index].from} <b>Backstory:</b> ${data.shipRequests[index].backStory}</p>`)
 	}
 }
 
