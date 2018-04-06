@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 const app = express();
-
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 // Here we use destructuring assignment with renaming so the two variables
 // called router (from ./users and ./auth) have different names
 // For example:
@@ -15,9 +16,11 @@ const app = express();
 // console.log(bobby); // De Niro - the variable name is bobby, not robert
 app.use(express.static(__dirname +'/docs'));
 app.use(express.static(__dirname +'/images'));
-app.get('/',(req,res) => {
+
+app.get('/', usersRouter,(req,res) => {
   //how to redirect any url
   res.sendFile(__dirname +`/docs/index.html`);
+  //add user
   //res.sendFile("/index.html");
 });
 app.get('/about',(req,res) => {
@@ -27,8 +30,7 @@ app.get('/about',(req,res) => {
 });
 
 
-const { router: usersRouter } = require('./users');
-const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+
 
 mongoose.Promise = global.Promise;
 
@@ -56,21 +58,15 @@ app.use('/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-app.get('/hello', (req, res) => {
-  res.status(200).send("Hello World")
-})
-
-app.get('/about',(req,res) =>{
-  res.sendFile(__dirname + `/docs/about.html`)
-});
-
 // A protected endpoint which needs a valid JWT to access it
 app.get('/protected', jwtAuth, (req, res) => {
   return res.status(200).json({
     data: 'rosebud'
+    //here allow packages to be created
+    //seperate html file for created  package
   });
 });
-// remove?
+
 
 
 app.use('*', (req, res) => {

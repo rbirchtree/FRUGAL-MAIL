@@ -36,4 +36,37 @@ UserSchema.statics.hashPassword = function(password) {
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = {User};
+const mailSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    required: true,
+  },
+  to: {
+    type: String,
+    required: true,
+  },
+  from:{
+    type: String,
+    required: true,
+  },
+  shipDate: {
+    type: Date,
+    required: true
+  },
+  received: {
+    type: Date,
+    required: true
+  },
+  shipped: {
+    type: Boolean,
+    required: true
+  },
+  courier: {
+    type: String,
+    required: true
+  }
+});
+ 
+ const Mail = mongoose.model('Mail',mailSchema);
+
+module.exports = {User, Mail};
