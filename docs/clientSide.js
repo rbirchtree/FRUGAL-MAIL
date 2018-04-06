@@ -15,7 +15,10 @@ function createLogin(loginName,pwd, givenName, familyName){
 	$.ajax({
 		method: "POST",
 		url: "api/users",
-		data:userInfo
+		data:userInfo,
+		headers: {
+            'content-type': 'application/json'
+        }
 		//stringify?
 	})
 	.done(function(msg){
