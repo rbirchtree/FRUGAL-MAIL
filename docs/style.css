@@ -77,7 +77,7 @@ a:hover{
 	margin: 0 auto;
 }
 
-.login{
+.login, .register{
 	display: block;
 	border: solid black 1px;
 	border-radius: 3px;

@@ -11,20 +11,25 @@
 		<img src="green-mail-icon.png">
 			<ul>
 				<li><a href="about.html">About</a></li>
-				<li><a href="/auth/login">Log In</a></li>
+				<li><a href="/api/login/">Log In</a></li>
 				<li><a href="/auth/logout">Log Out</a></li>
+				<li><a href="/api/users/">Register</a></li>
 			</ul>
 	</nav>
 	<!-- embedded into js -->
 	<div class="container">
 		
 
-			<form class="login">
+			<form class="register">
 				<label>User Name</label>
 					<input id="username" placeholder="jDoe"></input>
 				<label>Password</label>
 					<input id="password" placeholder="123456789"></input>
-				<button>Log In</button>
+				<label>First Name</label>
+					<input id="firstName" placeholder="John"></input>
+				<label>Last Name</label>
+					<input id="lastName" placeholder="Doe"></input>
+				<button>Register</button>
 			</form>
 		<div class="choices">
 						<!-- when users first login -->

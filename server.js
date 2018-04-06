@@ -7,6 +7,7 @@ const passport = require('passport');
 const app = express();
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+
 // Here we use destructuring assignment with renaming so the two variables
 // called router (from ./users and ./auth) have different names
 // For example:
@@ -14,30 +15,41 @@ const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 // const { james: jimmy, robert: bobby } = actorSurnames;
 // console.log(jimmy); // Stewart - the variable name is jimmy, not james
 // console.log(bobby); // De Niro - the variable name is bobby, not robert
+mongoose.Promise = global.Promise;
+app.use(morgan('common'));
+
+const { PORT, DATABASE_URL } = require('./config');
+
+
 app.use(express.static(__dirname +'/docs'));
 app.use(express.static(__dirname +'/images'));
+app.use('/api/users/',usersRouter);
+//set link to html how?
+app.use('/api/auth/', authRouter);
+//auto redirect for next?
 
-app.get('/', usersRouter,(req,res) => {
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.get('/',(req,res) => {
   //how to redirect any url
   res.sendFile(__dirname +`/docs/index.html`);
+  // 
   //add user
-  //res.sendFile("/index.html");
 });
+
 app.get('/about',(req,res) => {
   //how to redirect any url
   res.sendFile(__dirname +`/docs/about.html`);
+  //window.location = '/about'
+
   //res.sendFile(__dirname"/about.html");
 });
 
 
 
-
-mongoose.Promise = global.Promise;
-
-const { PORT, DATABASE_URL } = require('./config');
-
 // Logging
-app.use(morgan('common'));
+
 
 // CORS
 app.use(function (req, res, next) {
@@ -50,11 +62,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-passport.use(localStrategy);
-passport.use(jwtStrategy);
-
-app.use('/users/', usersRouter);
-app.use('/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
