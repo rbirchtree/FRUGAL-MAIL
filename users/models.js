@@ -41,30 +41,36 @@ const mailSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  to: {
+  toWhere: {
     type: String,
     required: true,
   },
-  from:{
+  fromWhere:{
     type: String,
     required: true,
   },
-  shipDate: {
-    type: Date,
-    required: true
-  },
-  received: {
+  tripDate: {
     type: Date,
     required: true
   },
   shipped: {
     type: Boolean,
+    //expires on tripdate and deletes
     required: true
   },
-  courier: {
+  mailingTravelingStatus: {
+    type: String,
+    required: true
+  },
+  mailingAddress: {
+    type: String,
+    required: true
+  },
+  username: {
     type: String,
     required: true
   }
+  // return options of delete update only to matching userNames
 });
  
  const Mail = mongoose.model('Mail',mailSchema);

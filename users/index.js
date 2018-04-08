@@ -1,6 +1,6 @@
 'use strict';
-const {User} = require('./models');
+const {User, Mail} = require('./models');
 const {router} = require('./router');
-
-module.exports = {User, router};
+const {mailRouter} = require('./mailRouter');
+module.exports = {User, router, mailRouter};
 //get rid of index file

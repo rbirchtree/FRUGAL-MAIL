@@ -20,24 +20,34 @@
 	<div class="container">
 		
 
-			<form class="register">
-				<label>User Name</label>
-					<input id="username" placeholder="jDoe"></input>
-				<label>Password</label>
-					<input id="password" placeholder="123456789"></input>
-				<label>First Name</label>
-					<input id="firstName" placeholder="John"></input>
-				<label>Last Name</label>
-					<input id="lastName" placeholder="Doe"></input>
-				<button>Register</button>
-			</form>
+		<form class="register">
+			<label>User Name</label>
+				<input id="username" placeholder="jDoe"></input>
+			<label>Password</label>
+				<input id="password" placeholder="123456789"></input>
+			<label>First Name</label>
+				<input id="firstName" placeholder="John"></input>
+			<label>Last Name</label>
+				<input id="lastName" placeholder="Doe"></input>
+			<button>Register</button>
+		</form>
+		<form class="login">
+			<label>User Name</label>
+				<input id="loginName" placeholder="jDoe"></input>
+			<label>Password</label>
+				<input id="loginPassword" placeholder="123456789"></input>
+			<button>Log in</button>
+		</form>
+		
 		<div class="choices">
 						<!-- when users first login -->
+		
+
 			<ul>
 				<!-- http://www.rgagnon.com/jsdetails/js-0069.html -->
-				<li>Update Trip</li>
+				<!--let users delete and update their trips in search all trips l<li>Update Trip</li> -->
 				<li>Add Trip</li>
-				<li>Delete Trip</li>
+				<!-- let users delete and update their trips in search all trips<li>Delete Trip</li> -->
 				<li>Search All Trips</li>
 			</ul>
 		</div>
@@ -47,16 +57,18 @@
 					<option value="1">Traveling</option>
 					<option value="2">Mailing</option>
 				</select>
-
-					<input placeholder="Los Angeles,CA"></input>
+				<input id="addTripDate" placeholder="MM/DD/YYYY i.e. 05/31/2018"></input>
+				<!-- make drop down later with locations  -->
+				<label>Trip Date</label>
+					<input id="addTripFrom" placeholder="Los Angeles,CA"></input>
 				<!-- make drop down later with locations  -->
 				<label>From</label>
-					<input placeholder="Kunming, China"></input>
+					<input id="addTripTo" placeholder="Kunming, China"></input>
 				<label>To</label>
 				<div class="stack">
-					<textarea rows="5" cols="30" name="address">Billy Bob 123 Lane, Beijing, TX, 90133</textarea>
+					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">Billy Bob 123 Lane, Beijing, TX, 90133</textarea>
 				<label>Mailing Address</label>
-					<textarea rows="5" cols="30" name="backStory">I'm going to Kunming for a week! The Chinese food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
+					<textarea rows="5" cols="30" name="backStory" id="addTripBackStory">I'm going to Kunming for a week! The Chinese food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
 				<label>Backstory</label><!--backstory place holder changes based on what the selector is.... -->
 				</div>
 				<button type="submit">Add trip</button>
