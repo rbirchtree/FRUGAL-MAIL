@@ -36,43 +36,5 @@ UserSchema.statics.hashPassword = function(password) {
 
 const User = mongoose.model('User', UserSchema);
 
-const mailSchema = new mongoose.Schema({
-  description: {
-    type: String,
-    required: true,
-  },
-  toWhere: {
-    type: String,
-    required: true,
-  },
-  fromWhere:{
-    type: String,
-    required: true,
-  },
-  tripDate: {
-    type: Date,
-    required: true
-  },
-  shipped: {
-    type: Boolean,
-    //expires on tripdate and deletes
-    required: true
-  },
-  mailingTravelingStatus: {
-    type: String,
-    required: true
-  },
-  mailingAddress: {
-    type: String,
-    required: true
-  },
-  username: {
-    type: String,
-    required: true
-  }
-  // return options of delete update only to matching userNames
-});
- 
- const Mail = mongoose.model('Mail',mailSchema);
 
-module.exports = {User, Mail};
+module.exports = {User};

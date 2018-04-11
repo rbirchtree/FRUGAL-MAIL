@@ -1,18 +1,45 @@
+'use strict';
 const mongoose = require('mongoose');
 
-//set up schema for a blog post
-const mailSchema = mongoose.Schema({
-  description: String,
-  to: String,
-  from: String,
-  ship_date: Date,
-  recieve_date: Date,
-  shipped: Boolean,
-  courier: String
-});
+mongoose.Promise = global.Promise;
 
-//create the model for the database
-const Post = mongoose.model('Post', postSchema);
+const mailSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    required: true,
+  },
+  toWhere: {
+    type: String,
+    required: true,
+  },
+  fromWhere:{
+    type: String,
+    required: true,
+  },
+  tripDate: {
+    type: String,
+    required: true
+  },
+/*  shipped: {
+    type: Boolean,
+    required: true
+  },*/
+  mailingTravelingStatus: {
+    type: String,
+    required: true
+  },
+  mailingAddress: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String,
+    required: true
+  }
+  // return options of delete update only to matching userNames
+});
+ 
+ const Mail = mongoose.model('Mail',mailSchema);
 
 //export the model
-module.exports = {Post};
+module.exports = {Mail};

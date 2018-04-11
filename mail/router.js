@@ -1,34 +1,76 @@
 'use strict';
-const express = require('express');
-const passport = require('passport');
+const  express = require('express');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose')
 
-const config = require('../config');
+const {Mail} = require('./models');
+
 const router = express.Router();
 
-const createAuthToken = function(user) {
-  return jwt.sign({user}, config.JWT_SECRET, {
-    subject: user.username,
-    expiresIn: config.JWT_EXPIRY,
-    algorithm: 'HS256'
-  });
-};
+const jsonParser = bodyParser.json();
+/*removed jsonParser*/
+//might need to change the router name
+router.post('/', jsonParser,(req,res) => {
+	console.log("accessing mail router")
+	const requiredFields = ['description','toWhere','fromWhere','tripDate','mailingTravelingStatus','username','mailingAddress'];
+	const missingField = requiredFields.find(field => !(field in req.body));
+	
+	if (missingField){
+		console.log("accessing missingField")
+		return res.status(422).json({
+			code:422,
+			reason: 'ValidationError',
+			message: 'Missing field',
+			location: missingField
+		});
+	}
+	console.log("before mail create");
 
-const localAuth = passport.authenticate('local', {session: false});
-router.use(bodyParser.json());
-// The user provides a username and password to login
-router.post('/login', localAuth, (req, res) => {
-  const authToken = createAuthToken(req.user.serialize());
-  res.json({authToken});
+	return Mail.create({
+		description: req.body.description,
+		toWhere: req.body.toWhere,
+		fromWhere: req.body.fromWhere,
+		tripDate: req.body.tripDate,
+		mailingTravelingStatus: req.body.mailingTravelingStatus = false,
+		username: req.body.username,
+		mailingAddress: req.body.mailingAddress
+	}).then(postal => {return res.status(201)})
+	.catch(err => {
+		console.error(err);
+		return res.status(500);
+	});
+
+/*	return Mail.create({
+		description: req.body.description,
+		toWhere: req.body.toWhere,
+		fromWhere: req.body.fromWhere,
+		tripDate: req.body.tripDate,
+		mailingTravelingStatus: req.body.mailingTravelingStatus = false,
+		username: req.body.username,
+		mailingAddress: req.body.mailingAddress
+	})
+	.then
+	(postal => {
+		console.log("accessing 201")
+		return res.status(201)})
+	//do returns work  .then((data) => {})
+	.catch(err =>{
+		console.log("error promise")
+		return res.status(500).json({error:'Something went wrong'});
+//		.then((data) => { })
+
+	});
+	res.status(201)*/
 });
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
-
-// The user exchanges a valid JWT for a new one with a later expiration
-router.post('/refresh', jwtAuth, (req, res) => {
-  const authToken = createAuthToken(req.user);
-  res.json({authToken});
+router.delete('/newmail/:id',(req,res) => {
+	Mail.delete(req.params.id)
+		.then( () =>{
+			res.status(204).json({message: 'success'});
+		}).catch( err=> {
+			console.error(err)
+			res.status(500).json({error: 'something went terribly wrong'});
+		});
 });
 
 module.exports = {router};

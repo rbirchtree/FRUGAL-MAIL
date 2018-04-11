@@ -6,7 +6,9 @@ const morgan = require('morgan');
 const passport = require('passport');
 const app = express();
 const { router: usersRouter } = require('./users');
+//what is userRouter?
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: mailRouter } = require('./mail');
 
 // Here we use destructuring assignment with renaming so the two variables
 // called router (from ./users and ./auth) have different names
@@ -26,6 +28,7 @@ app.use(express.static(__dirname +'/images'));
 app.use('/api/users/',usersRouter);
 //set link to html how?
 app.use('/api/auth/', authRouter);
+app.use('/newmail/', mailRouter);
 //auto redirect for next?
 
 passport.use(localStrategy);
