@@ -63,14 +63,16 @@ router.post('/', jsonParser,(req,res) => {
 	res.status(201)*/
 });
 
-router.delete('/newmail/:id',(req,res) => {
-	Mail.delete(req.params.id)
-		.then( () =>{
-			res.status(204).json({message: 'success'});
-		}).catch( err=> {
-			console.error(err)
-			res.status(500).json({error: 'something went terribly wrong'});
-		});
+router.delete('/:id',(req,res) => {
+	Mail
+	.findByIdAndRemove(req.params.id)
+	.then(() => {
+		res.status(204).json({message:'success'});
+	})
+	.catch(err => {
+		console.error(err);
+		res.status(500)
+	});
 });
 
 module.exports = {router};
