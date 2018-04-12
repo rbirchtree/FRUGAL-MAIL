@@ -61,12 +61,7 @@ app.get('/about',(req,res) => {
   //res.sendFile(__dirname"/about.html");
 });
 
-
-
 // Logging
-
-
-
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 // A protected endpoint which needs a valid JWT to access it
