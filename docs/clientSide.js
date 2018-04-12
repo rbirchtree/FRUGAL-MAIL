@@ -5,13 +5,14 @@ $(function() {
 
 	$('.register').submit(event => {
 		event.preventDefault();
-		const loginName = $(event.currentTarget).find('#username').val();
-		const pwd = $(event.currentTarget).find('#password').val();
-		const givenName = $(event.currentTarget).find('#firstName').val();
-		const familyName = $(event.currentTarget).find('#lastName').val();
+		let loginInfo = {
+		username : $(event.currentTarget).find('#username').val(),
+		password : $(event.currentTarget).find('#password').val(),
+		firstName : $(event.currentTarget).find('#firstName').val(),
+		lastName : $(event.currentTarget).find('#lastName').val(),
 		//submit via ajax to the port
-		
-		createLogin(loginName, pwd, givenName, familyName);
+		};
+		createLogin(loginInfo);
 		hideLogins();
 	});
 
@@ -31,12 +32,12 @@ $(function() {
 		let trip = {
 			currentUser,
 			mailingTraveling : String($("#mailingTraveling option:selected").text()),
-			addTripTo : $(event.currentTarget).find('#addTripTo').val(),
-			addTripFrom : $(event.currentTarget).find('#addTripFrom').val(),
-			addMailingAddress : $(event.currentTarget).find('#addTripMailingAddress').val(),
-			addTripBackStory : $(event.currentTarget).find('#addTripBackStory').val(),
-			addTripDate : $(event.currentTarget).find('#addTripDate').val()		
-		}
+			toWhere : $(event.currentTarget).find('#addTripTo').val(),
+			fromWhere : $(event.currentTarget).find('#addTripFrom').val(),
+			mailingAddress : $(event.currentTarget).find('#addTripMailingAddress').val(),
+			description : $(event.currentTarget).find('#addTripBackStory').val(),
+			tripDate : $(event.currentTarget).find('#addTripDate').val()		
+		};
 
 		createShippingRequest(trip);
 		//test write javascript for datbase to handle post requests
@@ -90,9 +91,9 @@ function hideLogins() {
 	//show menu
 }
 
-function createLogin(loginName, pwd, givenName, familyName) {
-	const userInfo = JSON.stringify({username: loginName, password: pwd, firstName: givenName, lastName: familyName});
-	console.log(userInfo)
+function createLogin(loginInfo) {
+	const userInfo = JSON.stringify(loginInfo);
+	console.log(userInfo);
 	$.ajax({
 		method: "POST",
 		url: "api/users",
