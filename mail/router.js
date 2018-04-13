@@ -50,6 +50,7 @@ router.post('/', jwtAuth, (req,res) => {
 });
 
 router.delete('/:id',(req,res) => {
+	/*add jwtAuth might need to set-up up route to validate*/
 	Mail
 	.findByIdAndRemove(req.params.id)
 	.then(() => {
@@ -58,6 +59,16 @@ router.delete('/:id',(req,res) => {
 	.catch(err => {
 		console.error(err);
 		res.status(500)
+	});
+});
+router.get('/', function(req,res,next){
+	/*add jwtAuth might need to set-up up route to validate*/
+	Mail.find()
+	.then(postal => {
+		res.json(postal).end();
+	}).catch( err => {
+		console.error(err);
+		res.status(500).json({error: 'something went terribly wrong'});
 	});
 });
 
