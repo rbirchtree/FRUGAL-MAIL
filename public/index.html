@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FRU | Frugal Mail</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:400">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+</head>
+<body>
+	<nav>
+		<img src="green-mail-icon.png">
+			<ul>
+				<li><a href="about.html">About</a></li>
+				<li><a href="/api/login/">Log In</a></li>
+				<li><a href="/auth/logout">Log Out</a></li>
+				<li><a href="/api/users/">Register</a></li>
+			</ul>
+	</nav>
+	<!-- embedded into js -->
+	<div class="container">
+		
+
+		<form class="register">
+			<label>User Name</label>
+				<input id="username" placeholder="jDoe"></input>
+			<label>Password</label>
+				<input id="password" placeholder="123456789" type="password"></input>
+			<label>First Name</label>
+				<input id="firstName" placeholder="John"></input>
+			<label>Last Name</label>
+				<input id="lastName" placeholder="Doe"></input>
+			<button>Register</button>
+		</form>
+		<form class="login">
+			<label>User Name</label>
+				<input id="loginName" placeholder="jDoe"></input>
+			<label>Password</label>
+				<input id="loginPassword" placeholder="123456789" type="password"></input>
+			<button>Log in</button>
+		</form>
+		
+		<div class="choices">
+						<!-- when users first login -->
+	
+			<ul>
+				<!-- http://www.rgagnon.com/jsdetails/js-0069.html -->
+				<!--let users delete and update their trips in search all trips l<li>Update Trip</li> -->
+				<li>Add Trip</li>
+				<!-- let users delete and update their trips in search all trips<li>Delete Trip</li> -->
+				<li>Search All Trips</li>
+			</ul>
+		</div>
+			<form class="addTrip">
+				<h2>Are You Mailing or Traveling Overseas?</h2>
+				<select name="status" id="mailingTraveling" required>
+					<option value="1">Traveling</option>
+					<option value="2">Mailing</option>
+				</select>
+				<input id="addTripDate" placeholder="MM/DD/YYYY i.e. 05/31/2018"></input>
+				<!-- make drop down later with locations  -->
+				<label>Trip Date</label>
+					<input id="addTripFrom" placeholder="Los Angeles,CA"></input>
+				<!-- make drop down later with locations  -->
+				<label>From</label>
+					<input id="addTripTo" placeholder="Kunming, China"></input>
+				<label>To</label>
+				<div class="stack">
+					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">Billy Bob 123 Lane, Beijing, TX, 90133</textarea>
+				<label>Mailing Address</label>
+					<textarea rows="5" cols="30" name="backStory" id="addTripBackStory">I'm going to Kunming for a week! The Chinese food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
+				<label>Backstory</label><!--backstory place holder changes based on what the selector is.... -->
+				</div>
+				<button type="submit">Add trip</button>
+				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
+
+				<!-- add/post/put method trip inline -->
+			</form>
+			<!-- delete  -->
+				<div class="results">
+					<h1>Upcoming trips</h1>
+					<select name="text">
+						<option value="shipRequstId" selected>return mongo data</option>
+						<!-- will delete user login -->
+					</select>
+					<button>Delete</button>		
+					//sit trip to null or package request	
+				</div>
+			<!-- update trip  return below-->
+			<!-- first return trips that user has than the updateTrip form -->
+			<!-- later feature update -->
+			<!-- 			<form class="updateTrip">
+				<h2>Are You Mailing or Traveling Overseas?</h2>
+				<select name="status" id="mailingTraveling" required>
+					<option value="1">Traveling</option>
+					<option value="2">Mailing</option>
+				</select>
+					<input placeholder="Los Angeles,CA"></input>
+				make drop down later with locations
+				<label>From</label>
+					<input placeholder="Kunming, China"></input>
+				<label>To</label>
+					<textarea rows="5" cols="30" name="address">Billy Bob 123 Lane, Bejing, TX, 90133</textarea>
+				<label>Mailing Address</label>
+					<textarea rows="5" cols="30" name="backStory">I'm yammy going to Kunming for a week! The Chinesse food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
+				<label>Backstory</label>backstory place holder changes based on what the selector is....
+				<button type="submit">Update trip</button> -->
+				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
+
+				<!-- add/post/put method trip inline -->
+			<div class="results">
+				<!-- return all results for now, no need to create a text search yet -->
+			</div>
+
+	</div>
+</body>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> 
+	<script type="text/javascript" src="clientSide.js"></script>
+</html>

@@ -35,7 +35,7 @@ app.use(morgan('common'));
 const { PORT, DATABASE_URL } = require('./config');
 
 
-app.use(express.static(__dirname +'/docs'));
+app.use(express.static(__dirname +'/public'));
 app.use(express.static(__dirname +'/images'));
 app.use('/api/users/',usersRouter);
 //set link to html how?
@@ -48,14 +48,15 @@ passport.use(jwtStrategy);
 
 app.get('/',(req,res) => {
   //how to redirect any url
-  res.sendFile(__dirname +`/docs/index.html`);
+  res.sendFile(__dirname +`/public/index.html`);
   // 
   //add user
 });
 
 app.get('/about',(req,res) => {
   //how to redirect any url
-  res.sendFile(__dirname +`/docs/about.html`);
+  console.log("err?")
+  res.sendFile(__dirname +`/public/about.html`);
   //window.location = '/about'
 
   //res.sendFile(__dirname"/about.html");

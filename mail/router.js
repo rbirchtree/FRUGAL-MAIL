@@ -22,7 +22,7 @@ router.post('/', jwtAuth, (req,res) => {
 	const missingField = requiredFields.find(field => !(field in req.body));
 	
 	if (missingField) {
-		
+		console.log("missingField access")
 		return res.status(422).json({
 			code:422,
 			reason: 'ValidationError',
@@ -30,22 +30,22 @@ router.post('/', jwtAuth, (req,res) => {
 			location: missingField
 		});
 	}
-
-	return Mail.create({
+	console.log("before mail create")
+	Mail.create({
 		description: req.body.description,
 		toWhere: req.body.toWhere,
 		fromWhere: req.body.fromWhere,
 		tripDate: req.body.tripDate,
-		mailingTravelingStatus: req.body.mailingTravelingStatus = false,
+		mailingTravelingStatus: req.body.mailingTravelingStatus,
 		username: req.body.username,
 		mailingAddress: req.body.mailingAddress
 	})
 	Mail.create(req.body)
 	.then(postal => {
-		return res.status(201).json(postal);
+		return res.status(201).json(postal).send();
 	})
 	.catch(err => {
-		return res.status(500).json(err);
+		return res.status(500).json(err).send();
 	});
 });
 
