@@ -1,7 +1,7 @@
 $(function() {
 	let registerStatus = false;
 	let loginStatus = false; //validate with cookie status
-	let currentUser
+	let currentUser;
 
 	$('.register').submit(event => {
 		event.preventDefault();
@@ -55,15 +55,68 @@ function createShippingRequest(trip) {
 		headers: {
 			'Authorization': `Bearer ${token}`,
 			'content-type': 'application/json'
-		},
-		/*beforeSend: function(xhr){
+		}
+		/* removed commona on line above beforeSend: function(xhr){
 			xhr.setRequestHeader("Authorization", 'Bearer' + jwt);
 		talk to ford about }*/ 
 	}).done(function(response) {
-		alert("success")
+		console.log("trip posted to database");
 		//reset
 	}).fail(function(err){
 		console.log("Did not add trip to database");
+	});
+}
+
+function updateMail(){
+	let token = localStorage.getItem("authToken");
+	$.ajax({
+		type: "PUT",
+		url: "newmail",
+		data: JSON.stringify(trip),
+		headers:{
+			'Authorization': `Bearer ${token}`,
+			'content-type' :'application/json'
+		}
+	}).done(function(response){
+		console.log('updated trip in database')
+	}).fail(function(err){
+		console.log('did not update trip in database');
+	})
+}
+
+function deleteMail(){
+	let token = localStorage.getItem("authtoken");
+	$.ajax({
+		type: "DELETE",
+		url: "newmail",
+		/*data: id??? from query sellector*/
+		headers:{
+			'Authorization': `Bearer ${token}`,
+			'content-type' :'application/json'
+		}
+	}).done(function(response){
+		console.log("trip was deleted")
+	}).fail(function(err){
+		console.log('trip was not deleted');
+	});
+}
+
+function searchMail(){
+	let token = localStorage.getItem("authToken");
+	$.ajax({
+		type: "GET",
+		url: "newmail",
+		headers:{
+			'Authorization':`Bearer ${token}`,
+			'content-type' : 'application/json'
+		},
+		success: function(data){
+			console.log(data)
+		}
+	}).done(function(response){
+		console.log("search success");
+	}).fail(function(err){
+		console.log(err);
 	});
 }
 
@@ -81,16 +134,18 @@ function login(userName, password) {
 	//authtoken is sent automatically via route//now show protect api
 	.done(function(msg) {
 		localStorage.setItem('authToken', msg.authToken);
+		hideLogins();
 	});
-	hideLogins();
 }
 
 function hideLogins() {
-	//use bang operatos later work on routes
+	//use bang operaters later work on routes
 	$('.register').hide();	
 	$('.login').hide();
 	//show menu
 }
+
+
 
 function createLogin(loginInfo) {
 	const userInfo = JSON.stringify(loginInfo);
@@ -112,6 +167,8 @@ function createLogin(loginInfo) {
 function validToken(token){
 	if (token){
 		loginStatus = true;
+		alert(token," exist")
 		hideLogins();
 	}
+	alert("token doesn't exist")
 }

@@ -49,7 +49,7 @@ router.post('/', jwtAuth, (req,res) => {
 	});
 });
 
-router.delete('/:id',(req,res) => {
+router.delete('/:id',jwtAuth,(req,res) => {
 	/*add jwtAuth might need to set-up up route to validate*/
 	Mail
 	.findByIdAndRemove(req.params.id)
@@ -61,7 +61,8 @@ router.delete('/:id',(req,res) => {
 		res.status(500)
 	});
 });
-router.get('/', function(req,res,next){
+
+router.get('/',jwtAuth,function(req,res,next){
 	/*add jwtAuth might need to set-up up route to validate*/
 	Mail.find()
 	.then(postal => {
@@ -70,6 +71,31 @@ router.get('/', function(req,res,next){
 		console.error(err);
 		res.status(500).json({error: 'something went terribly wrong'});
 	});
+});
+//5acaa9db9ef96436443d42a7
+router.put('/:id',jwtAuth,(req,res) => {
+	const updated = {};
+	const updateableFields = ['description','toWhere','fromWhere','tripDate',
+													'mailingTravelingStatus','username','mailingAddress'];
+	console.log('querying', req.params.id);
+	console.log('body', req.body.description);
+
+	Mail.
+		findByIdAndUpdate(req.params.id,
+			{
+				description: req.body.description,
+				toWhere: req.body.toWhere,
+				fromWhere: req.body.fromWhere,
+				tripDate: req.body.tripDate,
+				mailingTravelingStatus: req.body.mailingTravelingStatus,
+				username: req.body.username,
+				mailingAddress: req.body.mailingAddress
+			})
+		.then(postal => {
+			res.json(postal).end();
+		}).catch(err =>{
+			res.status(500).json({error: 'something went terribly wrong'});
+		})
 });
 
 module.exports = {router};
