@@ -72,7 +72,7 @@ router.get('/',jwtAuth,function(req,res,next){
 		res.status(500).json({error: 'something went terribly wrong'});
 	});
 });
-//5acaa9db9ef96436443d42a7
+
 router.put('/:id',jwtAuth,(req,res) => {
 	const updated = {};
 	const updateableFields = ['description','toWhere','fromWhere','tripDate',
