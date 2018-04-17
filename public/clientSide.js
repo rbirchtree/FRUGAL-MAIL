@@ -106,12 +106,21 @@ function searchMail(){
 	$.ajax({
 		type: "GET",
 		url: "newmail",
+		datatype: "json",
 		headers:{
 			'Authorization':`Bearer ${token}`,
 			'content-type' : 'application/json'
 		},
 		success: function(data){
-			console.log(data)
+			if(data.length >= 0){
+			$.each(data, function(i){
+				 $('.tripResults').append(`<p>${data[i].description} </p>`)
+				//append data
+				return (i < 6);
+			});
+			} else {
+				return $('.tripResults').append("<p>nothing to see here</p>");
+			}
 		}
 	}).done(function(response){
 		console.log("search success");
@@ -134,18 +143,29 @@ function login(userName, password) {
 	//authtoken is sent automatically via route//now show protect api
 	.done(function(msg) {
 		localStorage.setItem('authToken', msg.authToken);
+		registerStatus = true;
+		loginStatus = true;
 		hideLogins();
 	});
 }
 
 function hideLogins() {
 	//use bang operaters later work on routes
-	$('.register').hide();	
-	$('.login').hide();
-	//show menu
+	if(registerStatus) {
+		$('.register').hide();	
+	}
+
+	if(loginStatus) {
+		$('.login').hide();
+	}
 }
 
-
+function logout(){
+	$.ajax({
+		method: "GET",
+		url: "logout",
+	})
+}
 
 function createLogin(loginInfo) {
 	const userInfo = JSON.stringify(loginInfo);
@@ -162,6 +182,7 @@ function createLogin(loginInfo) {
 	.done(function(msg) {
 		console.log('data saved');
 	});
+	registerStatus = true;
 }
 
 function validToken(token){
@@ -171,4 +192,5 @@ function validToken(token){
 		hideLogins();
 	}
 	alert("token doesn't exist")
+	//use for crud functions on mail
 }
