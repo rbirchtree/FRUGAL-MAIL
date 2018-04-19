@@ -18,7 +18,7 @@
 				<li><a href="/api/users/">Register</a></li>
 			</ul>
 	</nav>
-	<!-- embedded into js -->
+	
 	<div class="container">
 		
 
@@ -43,14 +43,14 @@
 		
 		<div class="choices">
 						<!-- when users first login -->
-	
-			<ul>
 				<!-- http://www.rgagnon.com/jsdetails/js-0069.html -->
 				<!--let users delete and update their trips in search all trips l<li>Update Trip</li> -->
-				<li>Add Trip</li>
+				<button id="addTripButton">Add Trip</button>
+				<!-- hide login initially -->
 				<!-- let users delete and update their trips in search all trips<li>Delete Trip</li> -->
-				<li>Search All Trips</li>
-			</ul>
+				<button id="searchTripsButton">Search All Trips</button>
+				<!-- add search function on this button and delete and update for respective trips recipes/shopping list checklist could be a
+				good reference -->
 		</div>
 			<form class="addTrip">
 				<h2>Are You Mailing or Traveling Overseas?</h2>
@@ -58,7 +58,7 @@
 					<option value="1">Traveling</option>
 					<option value="2">Mailing</option>
 				</select>
-				<input id="addTripDate" placeholder="MM/DD/YYYY i.e. 05/31/2018"></input>
+				<input id="addTripDate" type="date" ></input>
 				<!-- make drop down later with locations  -->
 				<label>Trip Date</label>
 					<input id="addTripFrom" placeholder="Los Angeles,CA"></input>
@@ -67,9 +67,9 @@
 					<input id="addTripTo" placeholder="Kunming, China"></input>
 				<label>To</label>
 				<div class="stack">
-					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">Billy Bob 123 Lane, Beijing, TX, 90133</textarea>
+					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">First Name, Last Name, 123 Billy Bob  Lane, Beijing, TX, 90133</textarea>
 				<label>Mailing Address</label>
-					<textarea rows="5" cols="30" name="backStory" id="addTripBackStory">I'm going to Kunming for a week! The Chinese food is better in China. I'm a foodie! I'll take your mail and give to your friend! Tip me!</textarea>
+					<textarea rows="5" cols="30" name="backStory" id="addTripBackStory">I'm going to Kunming for a week! I'll take your mail and give to your friend! Tip me!</textarea>
 				<label>Backstory</label><!--backstory place holder changes based on what the selector is.... -->
 				</div>
 				<button type="submit">Add trip</button>
@@ -77,20 +77,10 @@
 
 				<!-- add/post/put method trip inline -->
 			</form>
-			<!-- delete  -->
-				<div class="results">
-					<h1>Upcoming trips</h1>
-					<select name="text">
-						<option value="shipRequstId" selected>return mongo data</option>
-						<!-- will delete user login -->
-					</select>
-					<button>Delete</button>		
-					//sit trip to null or package request	
-				</div>
 			
-			<div class="tripResults">
+			<ul class="tripResults">
 				<!-- return all results for now, no need to create a text search yet -->
-			</div>
+			</ul>
 
 	</div>
 </body>

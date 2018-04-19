@@ -30,7 +30,6 @@ router.post('/', jwtAuth, (req,res) => {
 			location: missingField
 		});
 	}
-	console.log("before mail create")
 	Mail.create({
 		description: req.body.description,
 		toWhere: req.body.toWhere,
@@ -40,7 +39,6 @@ router.post('/', jwtAuth, (req,res) => {
 		username: req.body.username,
 		mailingAddress: req.body.mailingAddress
 	})
-	Mail.create(req.body)
 	.then(postal => {
 		return res.status(201).json(postal).send();
 	})

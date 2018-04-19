@@ -42,6 +42,12 @@ $(function() {
 		createShippingRequest(trip);
 		//test write javascript for datbase to handle post requests
 	});
+
+
+	$('#searchTripsButton').click(function()   {
+		console.log("working")
+		return searchMail();
+	});
 });
 
 function createShippingRequest(trip) {
@@ -101,6 +107,7 @@ function deleteMail(){
 	});
 }
 
+
 function searchMail(){
 	let token = localStorage.getItem("authToken");
 	$.ajax({
@@ -114,9 +121,13 @@ function searchMail(){
 		success: function(data){
 			if(data.length >= 0){
 			$.each(data, function(i){
-				 $('.tripResults').append(`<p>${data[i].description} </p>`)
+				debugger;	
+				 $('.tripResults').append(`<li> To: ${data[i].toWhere} From: ${data[i].fromWhere} Trip Date: ${data[i].tripDate} 
+				 	Status: ${data[i].mailingTravelingStatus} Story: ${data[i].description} Address: ${data[i].mailingAddress}
+				  </li>`)
+				 console.log(i,'this is i')
 				//append data
-				return (i < 6);
+				return (i < 10);
 			});
 			} else {
 				return $('.tripResults').append("<p>nothing to see here</p>");
