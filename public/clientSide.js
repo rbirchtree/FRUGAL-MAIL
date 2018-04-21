@@ -48,7 +48,30 @@ $(function() {
 		console.log("working")
 		return searchMail();
 	});
+
+	// delete query here
+	$('.tripResults').on('click','.deletePost', function(event) {
+			event.preventDefault();
+			//https://www.codehaven.co.uk/get-id-of-closest-div-or-li/
+			const mailID = $(this).closest('li').attr('data-id');
+			deleteMail(mailID);
+			/*pass mail id to delete function*/
+			//get value of data-id than delete it
+/*			const itemIndex = $(event.target).closest('li').css('color','blue');
+*/			//pass delete function
+			//$(this).data("id");
+			
+		//closest? li
+		//const deleteMail = $(event.currentTarget).find('#data-id').val()
+		//render list?
+		});
 });
+
+function getItemIndexFromElement(item) {
+	const itemIndexString = $(item).closest('li').attr('data-id')
+	console.log(itemIndexString);
+	//value?
+}
 
 function createShippingRequest(trip) {
 	///build a route for handling ship data to database
@@ -73,7 +96,7 @@ function createShippingRequest(trip) {
 	});
 }
 
-function updateMail(){
+function updateMailDate(){
 	let token = localStorage.getItem("authToken");
 	$.ajax({
 		type: "PUT",
@@ -90,11 +113,12 @@ function updateMail(){
 	})
 }
 
-function deleteMail(){
-	let token = localStorage.getItem("authtoken");
+function deleteMail(mailID){
+	let token = localStorage.getItem("authToken");
+	console.log(mailID,'token',token);
 	$.ajax({
 		type: "DELETE",
-		url: "newmail",
+		url: `newmail/${mailID}` ,
 		/*data: id??? from query sellector*/
 		headers:{
 			'Authorization': `Bearer ${token}`,
@@ -121,12 +145,16 @@ function searchMail(){
 		success: function(data){
 			if(data.length >= 0){
 			$.each(data, function(i){
-				debugger;	
-				 $('.tripResults').append(`<li> To: ${data[i].toWhere} From: ${data[i].fromWhere} Trip Date: ${data[i].tripDate} 
+				/*debugger;	data-id*/
+				 $('.tripResults').append(`<li data-id="${data[i]._id}"> To: ${data[i].toWhere} From: ${data[i].fromWhere} Trip Date: ${data[i].tripDate} 
 				 	Status: ${data[i].mailingTravelingStatus} Story: ${data[i].description} Address: ${data[i].mailingAddress}
-				  </li>`)
+				  <button class="deletePost">delete</button></li><button class="updateTripDate">Update Trip Date</button></li>`);
 				 console.log(i,'this is i')
-				//append data
+
+				//append data length of data + total length to create scroll
+				/*add functions to update and delete//delete just a click button (which is appended and
+				listens to clicks on id) to delete which is an ajax call to delete...update...selects the data
+					*/
 				return (i < 10);
 			});
 			} else {

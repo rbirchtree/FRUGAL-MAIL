@@ -105,7 +105,7 @@ input{
 }
 
 button{
-	display: block;
+	/* display: block; */
 	background-color: rgb(0,100,0);
 	color: rgb(255,255,255);
 	margin: auto;
@@ -114,6 +114,14 @@ button{
 	margin-bottom:10px;
 	max-width:200px;
 	padding: 10px;
+}
+
+.deletePost{
+	display: inline;
+}
+
+.updateTripDate{
+	display: inline;
 }
 
 .stack{
