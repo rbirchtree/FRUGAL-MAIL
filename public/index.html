@@ -3,6 +3,7 @@
 <head>
 	<title>FRU | Frugal Mail</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:400">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -58,19 +59,20 @@
 					<option value="1">Traveling</option>
 					<option value="2">Mailing</option>
 				</select>
+				<label>Trip Date</label>
 				<input id="addTripDate" type="date" ></input>
 				<!-- make drop down later with locations  -->
-				<label>Trip Date</label>
+				<label>From</label>
 					<input id="addTripFrom" placeholder="Los Angeles,CA"></input>
 				<!-- make drop down later with locations  -->
-				<label>From</label>
-					<input id="addTripTo" placeholder="Kunming, China"></input>
 				<label>To</label>
+					<input id="addTripTo" placeholder="Kunming, China"></input>
 				<div class="stack">
-					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">First Name, Last Name, 123 Billy Bob  Lane, Beijing, TX, 90133</textarea>
 				<label>Mailing Address</label>
-					<textarea rows="5" cols="30" name="backStory" id="addTripBackStory">I'm going to Kunming for a week! I'll take your mail and give to your friend! Tip me!</textarea>
-				<label>Backstory</label><!--backstory place holder changes based on what the selector is.... -->
+					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">First Name, Last Name, 123 Billy Bob  Lane, Beijing, TX, 90133</textarea>
+				<label>Description of Trip/Mail</label>
+					<textarea rows="5" cols="30" name="description" id="addTripBackStory">I'm going to Kunming for a week! I'll take your mail and give to your friend! Tip me!</textarea>
+				<!--backstory place holder changes based on what the selector is.... -->
 				</div>
 				<button type="submit">Add trip</button>
 				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
@@ -81,6 +83,7 @@
 			<ul class="tripResults">
 				<!-- return all results for now, no need to create a text search yet -->
 			</ul>
+			
 
 	</div>
 </body>

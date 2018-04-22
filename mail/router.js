@@ -75,9 +75,7 @@ router.put('/:id',jwtAuth,(req,res) => {
 	const updated = {};
 	const updateableFields = ['description','toWhere','fromWhere','tripDate',
 													'mailingTravelingStatus','username','mailingAddress'];
-	console.log('querying', req.params.id);
-	console.log('body', req.body.description);
-
+		console.log(req.body)
 	Mail.
 		findByIdAndUpdate(req.params.id,
 			{
@@ -94,6 +92,16 @@ router.put('/:id',jwtAuth,(req,res) => {
 		}).catch(err =>{
 			res.status(500).json({error: 'something went terribly wrong'});
 		})
+});
+
+router.get('/:id',jwtAuth,(req,res) =>{
+	Mail.
+		findByIdAndUpdate(req.params.id)
+	.then(postal =>{
+		res.json(postal).end();
+	}).catch(err =>{
+		res.status(500).json({error: 'something went really terribly wrong'});
+	});
 });
 
 module.exports = {router};

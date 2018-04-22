@@ -8,6 +8,7 @@ const app = express();
 const { router: usersRouter } = require('./users');
 //what is userRouter?
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+/*router is renamed locally*/
 const { router: mailRouter } = require('./mail');
 
 // CORS
