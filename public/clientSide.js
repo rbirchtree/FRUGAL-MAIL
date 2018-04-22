@@ -61,17 +61,16 @@ $(function() {
 	$('.tripResults').on('click','#updateMail', function(event){
 		event.preventDefault();
 		let trip = {
-			description : $(event.currentTarget).find('#addTripBackStory2').val(),
-			toWhere : $(event.currentTarget).find('#addTripTo2').val(),
-			fromWhere : $(event.currentTarget).find('#addTripFrom2').val(),
-			tripDate : $(event.currentTarget).find('#addTripDate2').val(),
+			description : $(event.currentTarget).parents().find('#addTripBackStory2').val(),
+			toWhere : $(event.currentTarget).parents().find('#addTripTo2').val(),
+			fromWhere : $(event.currentTarget).parents().find('#addTripFrom2').val(),
+			tripDate : $(event.currentTarget).parents().find('#addTripDate2').val(),
 			mailingTravelingStatus : String($("#mailingTraveling2 option:selected").text()),
-			mailingAddress : $(event.currentTarget).find('#addTripMailingAddress2').val(),
+			mailingAddress : $(event.currentTarget).parents().find('#addTripMailingAddress2').val(),
 			username: currentUser			
 		};
-		var element = document.getElementById('#addTripDate2');
-		alert(element)
-		alert(JSON.stringify(trip));
+		
+		console.log(trip)
 		console.log(mailID)
 		updateMail(mailID,trip);
 		//undefined?
@@ -79,7 +78,7 @@ $(function() {
 	//continue from here
 	$('.tripResults').on('click','.updateTrip', function(event) {
 		event.preventDefault();
-		let mailID = $(this).closest('li').attr('data-id');
+		mailID = $(this).closest('li').attr('data-id');
 		//
 		//get id and post return data in form //send put via
 		searchMailGetUpadate(mailID)
@@ -110,6 +109,7 @@ $(function() {
 
 	function updateMail(mailID, trip){
 		console.log(JSON.stringify(trip),"updatemail function");
+		console.log(mailID,'mail id')
 		let token = localStorage.getItem("authToken");
 		$.ajax({
 			type: "PUT",

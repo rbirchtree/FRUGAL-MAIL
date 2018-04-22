@@ -75,7 +75,9 @@ router.put('/:id',jwtAuth,(req,res) => {
 	const updated = {};
 	const updateableFields = ['description','toWhere','fromWhere','tripDate',
 													'mailingTravelingStatus','username','mailingAddress'];
-		console.log(req.body)
+		console.log(req.body,"req.body")
+		console.log(req.params.id,"req.params.id")
+		console.log(req.body.id,"req.body.id")
 	Mail.
 		findByIdAndUpdate(req.params.id,
 			{
