@@ -14,16 +14,20 @@
 		<img src="green-mail-icon.png">
 			<ul>
 				<li><a href="about.html">About</a></li>
-				<li><a href="/api/login/">Log In</a></li>
-				<li><a href="/auth/logout">Log Out</a></li>
-				<li><a href="/api/users/">Register</a></li>
+				<!-- <li><a href="/api/login/">Log In</a></li> -->
+				<li><a href="/logout">Log Out</a></li>
+				<!-- <li><a href="/api/users/">Register</a></li> -->
 			</ul>
+		
+		
+
 	</nav>
 	
 	<div class="container">
 		
 
 		<form class="register">
+			<legend>Register</legend>
 			<label>User Name</label>
 				<input id="username" placeholder="jDoe"></input>
 			<label>Password</label>
@@ -34,6 +38,7 @@
 				<input id="lastName" placeholder="Doe"></input>
 			<button>Register</button>
 		</form>
+		
 		<form class="login">
 			<label>User Name</label>
 				<input id="loginName" placeholder="jDoe"></input>
@@ -41,17 +46,15 @@
 				<input id="loginPassword" placeholder="123456789" type="password"></input>
 			<button>Log in</button>
 		</form>
-		
+
+
+
 		<div class="choices">
-						<!-- when users first login -->
-				<!-- http://www.rgagnon.com/jsdetails/js-0069.html -->
-				<!--let users delete and update their trips in search all trips l<li>Update Trip</li> -->
-				<button id="addTripButton">Add Trip</button>
-				<!-- hide login initially -->
-				<!-- let users delete and update their trips in search all trips<li>Delete Trip</li> -->
-				<button id="searchTripsButton">Search All Trips</button>
-				<!-- add search function on this button and delete and update for respective trips recipes/shopping list checklist could be a
-				good reference -->
+				
+				<button id="addTripButton">New Travel/Mail</button>
+				
+				<button id="searchTripsButton">Search All Travel/Mail</button>
+				
 		</div>
 			<form class="addTrip">
 				<h2>Are You Mailing or Traveling Overseas?</h2>
@@ -72,12 +75,9 @@
 					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">First Name, Last Name, 123 Billy Bob  Lane, Beijing, TX, 90133</textarea>
 				<label>Description of Trip/Mail</label>
 					<textarea rows="5" cols="30" name="description" id="addTripBackStory">I'm going to Kunming for a week! I'll take your mail and give to your friend! Tip me!</textarea>
-				<!--backstory place holder changes based on what the selector is.... -->
 				</div>
 				<button type="submit">Add trip</button>
 				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
-
-				<!-- add/post/put method trip inline -->
 			</form>
 			
 			<ul class="tripResults">

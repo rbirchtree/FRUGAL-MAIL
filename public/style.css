@@ -1,7 +1,15 @@
-/* *{	
+* {	
 	-webkit-box-sizing:border-box;
 	box-sizing: border:border-box;
-} */
+}   
+
+label, input{
+	display: block;
+	border-radius: 3px;
+	text-align:left;
+	margin: 2px auto;
+}
+
 body{
 	margin:0;
 }
@@ -10,16 +18,18 @@ h1{
 	color: rgb(124,252,0);
 	text-shadow: 1px 1px black;
 	text-transform: uppercase;
+	text-align: center;
 	margin-bottom: 5px;
 }
-nav{
-	/* padding: 5px; */
+
+nav {
 	border: 1px solid black;
 	min-height: 130px;
-	width:100%;
+	width:101%;
+	margin-bottom: 5px;
 }
 
-li{
+li {
 	text-align: left,
 	padding: 2px;
 }
@@ -33,6 +43,7 @@ nav li{
 	display: inline;
 	margin-right: 5px;
 } 
+
 .choices, li{
 	text-align: center;
 	list-style: none;
@@ -48,14 +59,12 @@ p,h1 {
 	margin: 5px auto;
 	text-align: left;
 }
+
 p{
 	font-size:1.2em;
 }
 
-h1{
-	text-align: center;
-}
-.content-format{
+.content-format {
 	padding: 10px;
 }
 
@@ -77,35 +86,32 @@ a:hover{
 	text-decoration: none;
 }
 
+legend{
+	text-align: center;
+	font-weight: bold;
+}
+
 .container{
 	width: 80%;
 	margin: 0 auto;
 }
 
 .login, .register{
-	display: block;
 	border: solid black 1px;
 	border-radius: 3px;
-	max-width: 300px;
-	margin: 10px auto 10px auto;
+	max-width: 350px;
+	margin: 20px auto 20px auto;
 	background-color: rgb(232,232,232);
+	padding: 5px;
 }
 
-input,label{
-	margin:0 auto;
+
+.register button, .login button {
 	display:block;
-	/* text-align:center; */
-	/* padding: 10px; */
-	margin: 10px;
-	display: inline;
 }
-input{
-	margin-right: auto;
-	margin-left: auto;
-}
+
 
 button{
-	/* display: block; */
 	background-color: rgb(0,100,0);
 	color: rgb(255,255,255);
 	margin: auto;
@@ -130,7 +136,28 @@ button{
 
 .addTrip{
 	text-align: center;
+	border: solid black 1px;
+	margin: auto;
+	padding: 5px;
+	width: 60%;
+	border-radius: 3px;
 }
+
+.addTrip textarea {
+	display: inline;
+	max-width: 33%;
+}
+.addtrip input, label{
+	display: block;
+	text-align: center;
+	width: 33% !important;
+	margin: auto;
+}
+
+.addtrip input{
+	width: 33%;
+}
+
 textarea{
 	padding: 5px;
 }

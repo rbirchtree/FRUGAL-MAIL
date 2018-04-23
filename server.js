@@ -50,46 +50,34 @@ passport.use(jwtStrategy);
 app.get('/',(req,res) => {
   //how to redirect any url
   res.sendFile(__dirname +`/public/index.html`);
-  // 
+  return res.status(200);
   //add user
 });
 
 app.get('/about',(req,res) => {
-  //how to redirect any url
-  console.log("err?")
+  
   res.sendFile(__dirname +`/public/about.html`);
-  //window.location = '/about'
-
-  //res.sendFile(__dirname"/about.html");
+  
 });
 
 // Logging
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-// A protected endpoint which needs a valid JWT to access it
-app.get('/protected', jwtAuth, (req, res) => {
-  //allow users to update stuff
-  return res.status(200).json({
-    data: 'rosebud'
-    //here allow packages to be created
-    //seperate html file for created  package
-  });
-});
-
-
-
-app.use('*', (req, res) => {
-  return res.status(404).json({ message: 'Not Found' });
-});
 
 app.get('/logout', function(req,res){
   req.logout();
-  res.redirect('/');
+  res.sendFile(__dirname +`/public/index.html`);
+  return res.status(200);
 });
+
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: '404 Not Found' });
+});
+
+
 
 // Referenced by both runServer and closeServer. closeServer
 // assumes runServer has run and set `server` to a server object
-
 
 let server;
 

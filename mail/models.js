@@ -23,6 +23,7 @@ const mailSchema = new mongoose.Schema({
 /*  shipped: {
     type: Boolean,
     required: true
+    refactor later
   },*/
   mailingTravelingStatus: {
     type: String,
@@ -36,7 +37,7 @@ const mailSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-  // return options of delete update only to matching userNames
+  // return options of delete update only to matching userNames refactor later
 });
  
  const Mail = mongoose.model('Mail',mailSchema);

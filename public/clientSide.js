@@ -10,7 +10,6 @@ $(function() {
 		password : $(event.currentTarget).find('#password').val(),
 		firstName : $(event.currentTarget).find('#firstName').val(),
 		lastName : $(event.currentTarget).find('#lastName').val(),
-		//submit via ajax to the port
 		};
 		createLogin(loginInfo);
 		hideLogins();
@@ -23,8 +22,6 @@ $(function() {
 		
 		login(userName,password);
 		currentUser = userName;
-		//submit via ajax to the port
-		//create cookie here chain function
 	});
 
 	$('.addTrip').submit(event => {
@@ -40,7 +37,7 @@ $(function() {
 		};
 
 		createShippingRequest(trip);
-		//test write javascript for datbase to handle post requests
+
 	});
 
 
@@ -49,10 +46,8 @@ $(function() {
 		return searchMail();
 	});
 
-	// delete query here
 	$('.tripResults').on('click','.deletePost', function(event) {
 			event.preventDefault();
-			//https://www.codehaven.co.uk/get-id-of-closest-div-or-li/
 			mailID = $(this).closest('li').attr('data-id');
 			deleteMail(mailID);
 				
@@ -70,25 +65,18 @@ $(function() {
 			username: currentUser			
 		};
 		
-		console.log(trip)
-		console.log(mailID)
 		updateMail(mailID,trip);
-		//undefined?
+		
 	});
-	//continue from here
 	$('.tripResults').on('click','.updateTrip', function(event) {
 		event.preventDefault();
 		mailID = $(this).closest('li').attr('data-id');
-		//
-		//get id and post return data in form //send put via
+		
 		searchMailGetUpadate(mailID)
 
-		//updateMail(mailID,trip)
-		//update function
 	});
 
 	function createShippingRequest(trip) {
-		///build a route for handling ship data to database
 		let token = localStorage.getItem("authToken");
 		validToken(token);
 		$.ajax({

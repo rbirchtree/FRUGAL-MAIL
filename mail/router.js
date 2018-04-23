@@ -9,14 +9,12 @@ const {Mail} = require('./models');
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
-/*removed jsonParser*/
-//might need to change the router name
+
 router.use(jsonParser);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 router.post('/', jwtAuth, (req,res) => {
-	console.log("accessing mail router")
 	const requiredFields = ['description','toWhere','fromWhere','tripDate',
 													'mailingTravelingStatus','username','mailingAddress'];
 	const missingField = requiredFields.find(field => !(field in req.body));
@@ -48,20 +46,17 @@ router.post('/', jwtAuth, (req,res) => {
 });
 
 router.delete('/:id',jwtAuth,(req,res) => {
-	/*add jwtAuth might need to set-up up route to validate*/
 	Mail
 	.findByIdAndRemove(req.params.id)
 	.then(() => {
 		res.status(204).end();
 	})
 	.catch(err => {
-		console.error(err);
 		res.status(500)
 	});
 });
 
 router.get('/',jwtAuth,function(req,res,next){
-	/*add jwtAuth might need to set-up up route to validate*/
 	Mail.find()
 	.then(postal => {
 		res.json(postal).end();
@@ -75,9 +70,7 @@ router.put('/:id',jwtAuth,(req,res) => {
 	const updated = {};
 	const updateableFields = ['description','toWhere','fromWhere','tripDate',
 													'mailingTravelingStatus','username','mailingAddress'];
-		console.log(req.body,"req.body")
-		console.log(req.params.id,"req.params.id")
-		console.log(req.body.id,"req.body.id")
+		
 	Mail.
 		findByIdAndUpdate(req.params.id,
 			{
