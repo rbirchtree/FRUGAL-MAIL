@@ -3,6 +3,10 @@ $(function() {
 	let loginStatus = false; //validate with cookie status
 	let currentUser;
 	let mailID
+	$('.choices').hide();
+	$('.addTrip').hide();
+	$('.tripResults').hide();
+
 	$('.register').submit(event => {
 		event.preventDefault();
 		let loginInfo = {
@@ -12,16 +16,24 @@ $(function() {
 		lastName : $(event.currentTarget).find('#lastName').val(),
 		};
 		createLogin(loginInfo);
-		hideLogins();
+		
+		('.login').show();
+
 	});
 
 	$('.login').submit(event => {
 		event.preventDefault();
 		const userName = $(event.currentTarget).find('#loginName').val();
 		const password = $(event.currentTarget).find('#loginPassword').val();
-		
+		$('.login').hide();
+		$('.register').hide();
+		$('.choices').show();
 		login(userName,password);
 		currentUser = userName;
+	});
+
+	$('#addTripButton').click(function() {
+		$('.addTrip').show();
 	});
 
 	$('.addTrip').submit(event => {
@@ -37,12 +49,13 @@ $(function() {
 		};
 
 		createShippingRequest(trip);
-
+		return searchMail();
 	});
 
 
 	$('#searchTripsButton').click(function()   {
 		console.log("working")
+		$('.tripResults').show();
 		return searchMail();
 	});
 
@@ -50,7 +63,7 @@ $(function() {
 			event.preventDefault();
 			mailID = $(this).closest('li').attr('data-id');
 			deleteMail(mailID);
-				
+			return searchMail();	
 		//render list?
 		});
 	$('.tripResults').on('click','#updateMail', function(event){
@@ -66,19 +79,18 @@ $(function() {
 		};
 		
 		updateMail(mailID,trip);
-		
+		return searchMail();
 	});
 	$('.tripResults').on('click','.updateTrip', function(event) {
 		event.preventDefault();
 		mailID = $(this).closest('li').attr('data-id');
 		
-		searchMailGetUpadate(mailID)
-
+		searchMailGetUpadate(mailID);
+		
 	});
 
 	function createShippingRequest(trip) {
 		let token = localStorage.getItem("authToken");
-		validToken(token);
 		$.ajax({
 			type: "POST",
 			url: "newmail",
@@ -96,8 +108,7 @@ $(function() {
 	}
 
 	function updateMail(mailID, trip){
-		console.log(JSON.stringify(trip),"updatemail function");
-		console.log(mailID,'mail id')
+		
 		let token = localStorage.getItem("authToken");
 		$.ajax({
 			type: "PUT",
@@ -144,12 +155,13 @@ $(function() {
 				'content-type' : 'application/json'
 			},
 			success: function(data){
+				$('.tripResults').empty();
 				if(data.length >= 0){
 				$.each(data, function(i){
 					/*debugger;	data-id*/
-					 $('.tripResults').append(`<li data-id="${data[i]._id}"> To: ${data[i].toWhere} From: ${data[i].fromWhere} Trip Date: ${data[i].tripDate} 
-					 	Status: ${data[i].mailingTravelingStatus} Story: ${data[i].description} Address: ${data[i].mailingAddress}
-					  <button class="deletePost">Delete</button><button class="updateTrip">Update Trip</button></li>`);
+					 $('.tripResults').append(`<li data-id="${data[i]._id}"> <b>To:</b> ${data[i].toWhere} <br><b>From:</b> ${data[i].fromWhere}<br><b>Trip Date:</b> ${data[i].tripDate} 
+					 	<br><b>Status:</b> ${data[i].mailingTravelingStatus}<br><b>Story:</b> ${data[i].description}<br><b>Address:</b> ${data[i].mailingAddress}
+					  <button class="deletePost">Delete</button><button class="updateTrip">Update</button></li>`);
 					//append data length of data + total length to create scroll
 					/*add functions to update and delete//delete just a click button (which is appended and
 					listens to clicks on id) to delete which is an ajax call to delete...update...selects the data*/
@@ -179,24 +191,26 @@ $(function() {
 		success: function(data){
 			//const formData = JSON.stringify(data);
 			//return $('.tripResults').append(JSON.stringify(data));
-			//debugger;
 			return $('.tripResults').html(`<h2>Are You Mailing or Traveling Overseas?</h2>
 				<select name="status" id="mailingTraveling2" required>
 					<option value="1">Traveling</option>
 					<option value="2">Mailing</option>
 				</select>
+				<br>
 				<label>Trip Date</label>
 				<input id="addTripDate2" placeholder="${data.tripDate}"></input>
+				<br>
 				<label>From</label>
 					<input id="addTripFrom2" placeholder="${data.fromWhere}"></input>
 				<label>To</label>
+				<br>
 					<input id="addTripTo2" placeholder="${data.toWhere}"></input>
-				<div class="stack">
+				<br>
 					<label>Mailing Address</label>
 						<textarea id="addTripMailingAddress2" rows="5" cols="30" name="address">${data.mailingAddress}</textarea>
 					<label>Description of Trip/Mail</label>
 						<textarea rows="5" cols="30" name="description" id="addTripBackStory2">${data.description}</textarea> 
-				</div>
+				<br>
 				<button id="updateMail" type="submit">Update Trip</button>`);
 		}
 		});
@@ -218,20 +232,10 @@ $(function() {
 			localStorage.setItem('authToken', msg.authToken);
 			registerStatus = true;
 			loginStatus = true;
-			hideLogins();
+			
 		});
 	}
 
-	function hideLogins() {
-		//use bang operaters later work on routes
-		if(registerStatus) {
-			$('.register').hide();	
-		}
-
-		if(loginStatus) {
-			$('.login').hide();
-		}
-	}
 
 	function logout(){
 		$.ajax({
@@ -255,16 +259,8 @@ $(function() {
 		.done(function(msg) {
 			console.log('data saved');
 		});
-		registerStatus = true;
+
 	}
 
-	function validToken(token){
-		if (token){
-			loginStatus = true;
-			alert(token," exist")
-			hideLogins();
-		}
-		//alert("token doesn't exist")
-		//use for crud functions on mail
-	}
+
 });

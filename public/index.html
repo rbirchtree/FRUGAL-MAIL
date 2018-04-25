@@ -4,8 +4,8 @@
 	<title>FRU | Frugal Mail</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:400">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 </head>
@@ -51,7 +51,7 @@
 
 		<div class="choices">
 				
-				<button id="addTripButton">New Travel/Mail</button>
+				<button id="addTripButton">Add New Travel/Mail</button>
 				
 				<button id="searchTripsButton">Search All Travel/Mail</button>
 				
@@ -66,15 +66,15 @@
 				<input id="addTripDate" type="date" ></input>
 				<!-- make drop down later with locations  -->
 				<label>From</label>
-					<input id="addTripFrom" placeholder="Los Angeles,CA"></input>
+					<input id="addTripFrom" placeholder="Dallas, TX"></input>
 				<!-- make drop down later with locations  -->
 				<label>To</label>
 					<input id="addTripTo" placeholder="Kunming, China"></input>
 				<div class="stack">
 				<label>Mailing Address</label>
-					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">First Name, Last Name, 123 Billy Bob  Lane, Beijing, TX, 90133</textarea>
+					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">First Name, Last Name, 123 Billy Bob  Lane, Dallas, TX, 90133</textarea>
 				<label>Description of Trip/Mail</label>
-					<textarea rows="5" cols="30" name="description" id="addTripBackStory">I'm going to Kunming for a week! I'll take your mail and give to your friend! Tip me!</textarea>
+					<textarea rows="5" cols="30" name="description" id="addTripBackStory">Mail me your mail here in America, and I'll give it to your friend in Kunming</textarea>
 				</div>
 				<button type="submit">Add trip</button>
 				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->

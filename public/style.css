@@ -14,6 +14,8 @@ body{
 	margin:0;
 }
 
+
+
 h1{
 	color: rgb(124,252,0);
 	text-shadow: 1px 1px black;
@@ -89,6 +91,7 @@ a:hover{
 legend{
 	text-align: center;
 	font-weight: bold;
+	margin-bottom: 2px;
 }
 
 .container{
@@ -122,16 +125,16 @@ button{
 	padding: 10px;
 }
 
-.deletePost{
-	display: inline;
+.tripResults label{
+	font-weight: bold;
 }
-
 .updateTrip{
 	display: inline;
 }
 
-.stack{
-	margin:auto;
+#updateMail{
+	display: block;
+	margin: 5px auto;
 }
 
 .addTrip{
@@ -158,6 +161,52 @@ button{
 	width: 33%;
 }
 
+.tripResults {
+	border: solid black 1px;
+	border-radius: 3px;
+}
+
+select{
+	display: block;
+	margin: auto;
+}
+
+
+h2{
+	text-align: center;
+}
+
+.tripResults label{
+	margin-bottom: 2px 0;
+}
+
+.tripResults li{
+	text-align: left;
+	background-color: rgb(152,251,152);
+	border: dotted gray 1px;
+	border-radius: 3px;
+	margin: 5px;
+	padding: 10px;
+	position: relative;
+}
+
+
+
+.updateTrip{
+	position: absolute;
+	right:0;
+	padding: 2px;
+	margin-right: 4px;
+}
+
+.deletePost {
+	position: absolute;
+	right:100px;
+	padding: 2px;
+}
+
 textarea{
+	display:block;
 	padding: 5px;
+	margin: auto;
 }
