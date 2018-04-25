@@ -47,9 +47,10 @@ $(function() {
 			mailingAddress : $(event.currentTarget).find('#addTripMailingAddress').val(),
 			username: currentUser			
 		};
-
+		console.log(trip.toWhere)
 		createShippingRequest(trip);
-		return searchMail();
+		$('.addTrip').hide();
+		
 	});
 
 
