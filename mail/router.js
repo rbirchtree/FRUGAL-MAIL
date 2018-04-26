@@ -28,6 +28,7 @@ router.post('/', jwtAuth, (req,res) => {
 			location: missingField
 		});
 	}
+
 	Mail.create({
 		description: req.body.description,
 		toWhere: req.body.toWhere,
@@ -52,7 +53,7 @@ router.delete('/:id',jwtAuth,(req,res) => {
 		res.status(204).end();
 	})
 	.catch(err => {
-		res.status(500)
+		res.status(500);
 	});
 });
 

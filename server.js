@@ -57,6 +57,7 @@ app.get('/',(req,res) => {
 app.get('/about',(req,res) => {
   
   res.sendFile(__dirname +`/public/about.html`);
+  return res.status(203);
   
 });
 
@@ -66,12 +67,12 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.get('/logout', function(req,res){
   req.logout();
-  res.sendFile(__dirname +`/public/index.html`);
+  res.sendFile(__dirname + '/public/index.html');
   return res.status(200);
 });
 
 app.use('*', (req, res) => {
-  return res.status(404).json({ message: '404 Not Found' });
+  return res.status(404)//.json({ message: '404 Not Found' });
 });
 
 
