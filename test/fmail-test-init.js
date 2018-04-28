@@ -2,16 +2,19 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 //let randNum = String(Math.random());
 const faker = require('faker');
+const jwt = require('jsonwebtoken');
 const {app, runServer, closeServer} = require('../server');
 
 const expect = chai.expect;
 const should = chai.should();
 const chaiHtml = require('chai-html');
 const mongoose = require('mongoose');
-
+const { JWT_SECRET } = require('../config');
 const {Mail} = require('../mail/models');
 const {User} = require('../users/models');
-const {TEST_DAATABASE_URL} = require('../config');
+const {TEST_DATABASE_URL} = require('../config');
+
+mongoose.Promise = global.Promise;
 
 chai.use(chaiHttp);
 
@@ -42,7 +45,7 @@ function randomTravelMailingStatus(){
 
 function generateMail(){
 	return {
-		description: faker.lorem.text(),
+		description: faker.lorem.sentence(),
 		toWhere: faker.address.city() + ' , '+ faker.address.state(),
 		fromWhere: faker.address.city() +' , '+ faker.address.state(),
 		tripDate: faker.date.future(),
@@ -53,11 +56,12 @@ function generateMail(){
 };
 
 
-//console.log(generateUser());
-//console.log(generateLogin());
-//console.log(generateMail());
-
 describe('Frugal-Mail CRUD points', function(){
+
+	const username = 'exampleUser';
+	const password = 'examplePass';
+	const firstName = 'Example';
+	const lastName = 'User';
 
 	before(function(){
 		return runServer();
@@ -67,14 +71,28 @@ describe('Frugal-Mail CRUD points', function(){
 		return closeServer();
 	});
 
+	beforeEach(function() {
+	    return User.hashPassword(password).then(password =>
+	      User.create({
+	        username,
+	        password,
+	        firstName,
+	        lastName
+	      })
+	    );
+	  });
+
+
+	afterEach(function(){
+		return User.remove({});
+	});
+
 	it('should return 200', function(){
 		let res;
 		return chai.request(app)
 		.get('/')
-		.then(_res =>{
-			res = _res;
-			//why did this work and not the other???
-//			expect('<p>Hello World </p>').html.to.equal('<p>Hello World</p>');
+		.then(res =>{
+			//res = _res;
 			res.should.have.status(200);
 		});
 	});
@@ -84,6 +102,7 @@ describe('Frugal-Mail CRUD points', function(){
 		.get('/about')
 		.then(res => {
 			res.should.have.status(203);
+			expect(res).to.be.html;
 		});
 	});
 
@@ -92,22 +111,98 @@ describe('Frugal-Mail CRUD points', function(){
 		.get('/logout')
 		.then(res => {
 			res.should.have.status(200);
+			expect(res).to.be.html;
 		});
 	});
+/*
+	it('Should return a valid auth token', function () {
+      return chai
+        .request(app)
+        .post('/api/auth/login')
+        .send({ username, password })
+        .then(res => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          const token = res.body.authToken;
+          expect(token).to.be.a('string');
+          const payload = jwt.verify(token, JWT_SECRET, {
+            algorithm: ['HS256']
+          });
+          expect(payload.user).to.deep.equal({
+            username,
+            firstName,
+            lastName
+          })
+        });
+    });*/
 
-	it('should add a new user', function(){
-		let newUser = generateUser();
-		let res;
+	//first post with token
+	// make token global?
+	//token might already be created or send login to get a token...?
+	/*it('Should return a successful post of mail with token', function(){
+		const postal = generateMail()
+
+		const token = jwt.sign(
+        {
+          user: {
+            username,
+            firstName,
+            lastName
+          }
+        },
+        JWT_SECRET,
+        {
+          algorithm: 'HS256',
+          subject: username,
+          expiresIn: '7d'
+        }
+      );
+
+
+
 		return chai.request(app)
-		.post('/api/users/')
-		.send(newUser)
-		.then(function(res){
-			 res.should.have.status(201)
-			 res.should.be.json;
-		}).catch(function(err){
-			 err;
-		});
-	});
-	
+			.post('/login')
+			.send({
+           username: 'lizardlad01',
+           password: '322skulls'
+			})
+			.then((res) => {
+				res.should.have.status(200);
+				res.should.be.json;
+				console.log(res.body);
+				token = res.body.token
+				return token;
+			})
+			.catch((err) =>{
+				console.log('failed at user authentication');
+			})
+			.then((err, data) =>{
+				console.log('token value is ', token);
+				chai.request(app)
+				.post('/newmail')
+            	.set( 'Authorization', `${ token }` )
+				.send(postal)
+				.then(res => {
+					console.log('second response is ', res);
+					res.should.have.status(201)
+				})
+				.catch( err =>{
+					console.log('second promise', err.message)
+				})
+			})
 
+*/
+          /*expect(payload.user).to.deep.equal({
+            username,
+            firstName,
+            lastName
+          });
+          expect(payload.exp).to.be.at.least(decoded.exp);*/
+       
+
+			//line 219 work on delete put get
+//	});
+	//use auth token refresh
+	//https://medium.com/@bill_broughton/testing-with-authenticated-routes-in-express-6fa9c4c335ca
 });
+
