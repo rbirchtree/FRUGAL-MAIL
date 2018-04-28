@@ -17,7 +17,7 @@ take mail to China if is sent to him at his US address. Likewise, a person can a
 **To Install**
 1. git clone git@github.com:rbirchtree/FRUGAL-MAIL.git
 2. npm install
-3.nodemon server
+3. nodemon server
 
 **Contributors:**
 Rob Birch
