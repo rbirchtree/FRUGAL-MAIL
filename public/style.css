@@ -102,7 +102,7 @@ legend{
 .login, .register{
 	border: solid black 1px;
 	border-radius: 3px;
-	max-width: 350px;
+	max-width: 300px;
 	margin: 20px auto 20px auto;
 	background-color: rgb(232,232,232);
 	padding: 5px;
@@ -163,6 +163,8 @@ button{
 
 .tripResults {
 	border: solid black 1px;
+	margin: auto;
+	padding: 5px 5px;
 	border-radius: 3px;
 }
 
@@ -177,7 +179,7 @@ h2{
 }
 
 .tripResults label{
-	margin-bottom: 2px 0;
+	margin-bottom: 2px;
 }
 
 .tripResults li{
@@ -185,7 +187,7 @@ h2{
 	background-color: rgb(152,251,152);
 	border: dotted gray 1px;
 	border-radius: 3px;
-	margin: 5px;
+	margin: 5px 5px;
 	padding: 10px;
 	position: relative;
 }
@@ -196,7 +198,7 @@ h2{
 	position: absolute;
 	right:0;
 	padding: 2px;
-	margin-right: 4px;
+	margin-right: 4px; 
 }
 
 .deletePost {

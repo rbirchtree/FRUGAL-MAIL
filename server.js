@@ -61,7 +61,7 @@ app.get('/about',(req,res) => {
   
 });
 
-// Logging
+
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 

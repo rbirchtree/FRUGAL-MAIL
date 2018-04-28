@@ -190,8 +190,7 @@ $(function() {
 				'content-type' :'application/json'
 			},
 		success: function(data){
-			//const formData = JSON.stringify(data);
-			//return $('.tripResults').append(JSON.stringify(data));
+	
 			return $('.tripResults').html(`<h2>Are You Mailing or Traveling Overseas?</h2>
 				<select name="status" id="mailingTraveling2" required>
 					<option value="1">Traveling</option>
