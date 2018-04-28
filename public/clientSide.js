@@ -160,7 +160,8 @@ $(function() {
 				if(data.length >= 0){
 				$.each(data, function(i){
 					/*debugger;	data-id*/
-					 $('.tripResults').append(`<li data-id="${data[i]._id}"> <b>To:</b> ${data[i].toWhere} <br><b>From:</b> ${data[i].fromWhere}<br><b>Trip Date:</b> ${data[i].tripDate} 
+					i =	i + 1
+					 $('.tripResults').append(`<li data-id="${data[i]._id}"><b># ${i}</b> <br><b>To:</b> ${data[i].toWhere} <br><b>From:</b> ${data[i].fromWhere}<br><b>Trip Date:</b> ${data[i].tripDate} 
 					 	<br><b>Status:</b> ${data[i].mailingTravelingStatus}<br><b>Story:</b> ${data[i].description}<br><b>Address:</b> ${data[i].mailingAddress}
 					  <button class="deletePost">Delete</button><button class="updateTrip">Update</button></li>`);
 					//append data length of data + total length to create scroll
