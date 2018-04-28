@@ -14,7 +14,7 @@ take mail to China if is sent to him at his US address. Likewise, a person can a
 6. Passport
 7. and much, much more
 
-**To Install**
+**To Install & Run**
 1. git clone git@github.com:rbirchtree/FRUGAL-MAIL.git
 2. npm install
 3. nodemon server
