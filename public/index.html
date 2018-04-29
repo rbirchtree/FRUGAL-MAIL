@@ -13,18 +13,25 @@
 </head>
 <body>
 	<nav>
+
 		<img src="green-mail-icon.png">
 			<ul>
-				<li><a href="about.html">About</a></li>
-				<li><a href="/logout">Log Out</a></li>
+				<li><a href="/about">About</a></li>
+				<li id="logout"><a href="/logout">Log Out</a></li>
+				<li class="selling">Coordinating Mailings to Expats by Expats Overseas!</p>
 			</ul>
-		
-		
-
+			
 	</nav>
 	
 	<div class="container">
-		
+		<form class="login">
+			<legend>Login</legend>
+			<label>User Name</label>
+				<input id="loginName" placeholder="jDoe"></input>
+			<label>Password</label>
+				<input id="loginPassword" placeholder="123456789" type="password"></input>
+			<button>Log in</button>
+		</form>		
 
 		<form class="register">
 			<legend>Register</legend>
@@ -39,54 +46,43 @@
 			<button>Register</button>
 		</form>
 		
-		<form class="login">
-			<label>User Name</label>
-				<input id="loginName" placeholder="jDoe"></input>
-			<label>Password</label>
-				<input id="loginPassword" placeholder="123456789" type="password"></input>
-			<button>Log in</button>
-		</form>
-
-
-
 		<div class="choices">
-				
-				<button id="addTripButton">Add New Travel/Mail</button>
-				
-				<button id="searchTripsButton">Search All Travel/Mail</button>
-				
+			<button id="addTripButton">Add New Travel/Mail</button>
+			<button id="searchTripsButton">Search All Travel/Mail</button>
 		</div>
-			<form class="addTrip">
-				<h2>Are You Mailing or Traveling Overseas?</h2>
-				<select name="status" id="mailingTraveling" required>
-					<option value="1">Traveling</option>
-					<option value="2">Mailing</option>
-				</select>
-				<label>Trip Date</label>
-				<input id="addTripDate" type="date" ></input>
-				<!-- make drop down later with locations  -->
-				<label>From</label>
-					<input id="addTripFrom" placeholder="Dallas, TX"></input>
-				<!-- make drop down later with locations  -->
-				<label>To</label>
-					<input id="addTripTo" placeholder="Kunming, China"></input>
-				<div class="stack">
-				<label>Mailing Address</label>
-					<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">Mailing address of person TRAVELING or China MAILING address of person who receives mail in China</textarea>
-				<label>Description of Trip/Mail</label>
-					<textarea rows="5" cols="30" name="description" id="addTripBackStory">Trip itinerary to determine drop offs for person TRAVELLING or reason for MAILING package. Also what do do if no transfer happens with package.
-					</textarea>
-				</div>
-				<button type="submit">Add trip</button>
-				<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
-			</form>
-			
-			<ul class="tripResults">
-				<!-- return all results for now, no need to create a text search yet -->
-			</ul>
-			
-
+		<form class="addTrip">
+			<h2>Are You Mailing or Traveling Overseas?</h2>
+			<select name="status" id="mailingTraveling" required>
+				<option value="1">Traveling</option>
+				<option value="2">Mailing</option>
+			</select>
+			<br>
+			<label for="addTripDate">Trip Date</label>
+			<input id="addTripDate" type="date" ></input>
+			<!-- make drop down later with locations  -->
+			<br>
+			<label for="addTripFrom">From</label>
+			<input id="addTripFrom" placeholder="Dallas, TX"></input>
+			<br>
+			<!-- make drop down later with locations  -->
+			<label for="addTripTo">To</label>
+			<input id="addTripTo" placeholder="Kunming, China"></input>
+			<br>
+			<label for="addTripMailingAddress">Mailing Address</label>
+			<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">Mailing address of person TRAVELING or China MAILING address of person who receives mail in China</textarea>
+			<br>
+			<label for="description">Description of Trip/Mail</label>
+			<textarea rows="5" cols="30" name="description" id="addTripBackStory">Trip itinerary to determine drop offs for person TRAVELLING or reason for MAILING package. Also what do do if no transfer happens with package.
+			</textarea>
+			<br>
+			<button type="submit">Add trip</button>
+			<button type="submit" id="cancel">Cancel</button>
+			<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
+		</form>
+	
+		<ul class="tripResults">
+			<!-- return all results for now, no need to create a text search yet -->
+		</ul>			
 	</div>
 </body>
-	
 </html>

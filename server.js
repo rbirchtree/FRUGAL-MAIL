@@ -10,7 +10,7 @@ const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 /*router is renamed locally*/
 const { router: mailRouter } = require('./mail');
-
+mongoose.Promise = global.Promise;
 // CORS
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -22,19 +22,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
-// Here we use destructuring assignment with renaming so the two variables
-// called router (from ./users and ./auth) have different names
-// For example:
-// const actorSurnames = { james: "Stewart", robert: "De Niro" };
-// const { james: jimmy, robert: bobby } = actorSurnames;
-// console.log(jimmy); // Stewart - the variable name is jimmy, not james
-// console.log(bobby); // De Niro - the variable name is bobby, not robert
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.use(morgan('common'));
 
 const { PORT, DATABASE_URL } = require('./config');
-
 
 app.use(express.static(__dirname +'/public'));
 app.use(express.static(__dirname +'/images'));
@@ -44,8 +39,7 @@ app.use('/api/auth/', authRouter);
 app.use('/newmail/', mailRouter);
 //auto redirect for next?
 
-passport.use(localStrategy);
-passport.use(jwtStrategy);
+
 
 app.get('/',(req,res) => {
   //how to redirect any url
@@ -54,16 +48,11 @@ app.get('/',(req,res) => {
   //add user
 });
 
+
 app.get('/about',(req,res) => {
-  
   res.sendFile(__dirname +`/public/about.html`);
   return res.status(203);
-  
 });
-
-
-const jwtAuth = passport.authenticate('jwt', { session: false });
-
 
 app.get('/logout', function(req,res){
   req.logout();

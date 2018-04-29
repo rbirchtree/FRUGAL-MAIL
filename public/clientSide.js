@@ -1,8 +1,7 @@
 $(function() {
-	let registerStatus = false;
-	let loginStatus = false; //validate with cookie status
 	let currentUser;
 	let mailID
+	$('#logout').css('visibility','hidden');
 	$('.choices').hide();
 	$('.addTrip').hide();
 	$('.tripResults').hide();
@@ -16,8 +15,7 @@ $(function() {
 		lastName : $(event.currentTarget).find('#lastName').val(),
 		};
 		createLogin(loginInfo);
-		
-		('.login').show();
+		$('.login').show();
 
 	});
 
@@ -28,12 +26,14 @@ $(function() {
 		$('.login').hide();
 		$('.register').hide();
 		$('.choices').show();
+		$('#logout').show();
 		login(userName,password);
 		currentUser = userName;
 	});
 
 	$('#addTripButton').click(function() {
 		$('.addTrip').show();
+		$('.tripResults').hide();
 	});
 
 	$('.addTrip').submit(event => {
@@ -47,15 +47,24 @@ $(function() {
 			mailingAddress : $(event.currentTarget).find('#addTripMailingAddress').val(),
 			username: currentUser			
 		};
-		console.log(trip.toWhere)
 		createShippingRequest(trip);
 		$('.addTrip').hide();
 		
 	});
+	$("#cancel").on('click', function(event){
+		event.preventDefault();
+		$('.choices').show();
+		$('.tripResults').hide();
+		$('.addTrip').hide();
+	});
 
+	$('.tripResults').on('click','.cancel', function(event){
+		event.preventDefault();
+		return searchMail();
+	})
 
 	$('#searchTripsButton').click(function()   {
-		console.log("working")
+		$('.addTrip').hide();
 		$('.tripResults').show();
 		return searchMail();
 	});
@@ -101,10 +110,7 @@ $(function() {
 				'content-type': 'application/json'
 			}
 		}).done(function(response) {
-			console.log("trip posted to database");
-			//reset
 		}).fail(function(err){
-			console.log("Did not add trip to database");
 		});
 	}
 
@@ -120,9 +126,7 @@ $(function() {
 				'content-type' :'application/json'
 			}
 		}).done(function(response){
-			console.log('updated trip in database')
 		}).fail(function(err){
-			console.log('did not update trip in database');
 		});
 	}
 
@@ -158,25 +162,24 @@ $(function() {
 			success: function(data){
 				$('.tripResults').empty();
 				if(data.length >= 0){
+					let j = 0;
 				$.each(data, function(i){
 					/*debugger;	data-id*/
-					i =	i + 1
-					 $('.tripResults').append(`<li data-id="${data[i]._id}"><b># ${i}</b> <br><b>To:</b> ${data[i].toWhere} <br><b>From:</b> ${data[i].fromWhere}<br><b>Trip Date:</b> ${data[i].tripDate} 
+
+					j =	j + 1
+					 $('.tripResults').append(`<li data-id="${data[i]._id}"><b># ${j}</b> <br><b>To:</b> ${data[i].toWhere} <br><b>From:</b> ${data[i].fromWhere}<br><b>Trip Date:</b> ${data[i].tripDate} 
 					 	<br><b>Status:</b> ${data[i].mailingTravelingStatus}<br><b>Story:</b> ${data[i].description}<br><b>Address:</b> ${data[i].mailingAddress}
 					  <button class="deletePost">Delete</button><button class="updateTrip">Update</button></li>`);
 					//append data length of data + total length to create scroll
 					/*add functions to update and delete//delete just a click button (which is appended and
 					listens to clicks on id) to delete which is an ajax call to delete...update...selects the data*/
-					return (i < 15);
 				});
 				} else {
 					return $('.tripResults').append("<p>nothing to see here</p>");
 				}
 			}
 		}).done(function(response){
-			console.log("search success");
 		}).fail(function(err){
-			console.log(err);
 		});
 	}
 
@@ -198,21 +201,26 @@ $(function() {
 					<option value="2">Mailing</option>
 				</select>
 				<br>
-				<label>Trip Date</label>
+				<label for="addTripDate2">Trip Date</label>
 				<input id="addTripDate2" placeholder="${data.tripDate}"></input>
 				<br>
-				<label>From</label>
-					<input id="addTripFrom2" placeholder="${data.fromWhere}"></input>
-				<label>To</label>
+				<label for="addTripFrom2">From</label>
+				<input id="addTripFrom2" placeholder="${data.fromWhere}"></input>
 				<br>
-					<input id="addTripTo2" placeholder="${data.toWhere}"></input>
+				<label for="addTripTo2">To</label>
+				<input id="addTripTo2" placeholder="${data.toWhere}"></input>
 				<br>
-					<label>Mailing Address</label>
-						<textarea id="addTripMailingAddress2" rows="5" cols="30" name="address">${data.mailingAddress}</textarea>
-					<label>Description of Trip/Mail</label>
-						<textarea rows="5" cols="30" name="description" id="addTripBackStory2">${data.description}</textarea> 
+				<label for="addTripMailingAddress2">Mailing Address</label>
+				<textarea id="addTripMailingAddress2" rows="5" cols="30" name="address">${data.mailingAddress}</textarea>
 				<br>
-				<button id="updateMail" type="submit">Update Trip</button>`);
+				<label for="addTripBackStory2">Description of Trip/Mail</label>
+				<textarea rows="5" cols="30" name="description" id="addTripBackStory2">${data.description}</textarea> 
+				<br>
+				<div class='stack'>
+				<button id="updateMail" type="submit">Update Trip</button>
+				<button class="cancel" type="submit">Cancel</button>
+				</div>`
+				);
 		}
 		});
 	};
@@ -226,36 +234,32 @@ $(function() {
 			data: userInfo,
 			headers: {
 	      'content-type': 'application/json'
+	    },
+	    failure: function(response){
+	    	
+	    },
+	    success: function(response){
 	    }
 		})
 		//authtoken is sent automatically via route//now show protect api
 		.done(function(msg) {
 			localStorage.setItem('authToken', msg.authToken);
-			registerStatus = true;
-			loginStatus = true;
-			
+			$('#logout').css('visibility','visible');
 		});
-	}
 
-
-	function logout(){
-		$.ajax({
-			method: "GET",
-			url: "logout",
-		});
 	}
 
 	function createLogin(loginInfo) {
+
 		const userInfo = JSON.stringify(loginInfo);
 		console.log(userInfo);
 		$.ajax({
 			method: "POST",
 			url: "api/users",
-			data:userInfo,
+			data: userInfo,
 			headers: {
 	      'content-type': 'application/json'
-	    }
-			//stringify?
+	    			}
 		})
 		.done(function(msg) {
 			console.log('data saved');
@@ -263,5 +267,21 @@ $(function() {
 
 	}
 
+	function logout(){
+		$.ajax({
+			method: "GET",
+			url: "logout",
+		}).done(function(data){
+			$('#logout').hide();
+		});
+	}
 
+	$.ajaxSetup({
+		statusCode: {
+			401: function(){
+				location.href ="/logout"
+			}
+		}
+	})
+;
 });

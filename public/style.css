@@ -14,6 +14,13 @@ body{
 	margin:0;
 }
 
+.selling {
+	display: inline;
+	color: rgb(124,252,0);
+	text-shadow: 1px 1px black;
+	text-transform: uppercase;
+	font-size: 18px;
+}
 
 
 h1{
@@ -40,7 +47,10 @@ nav ul{
 	margin: 50px 0;
 	text-align: left;
 }
-
+.info{
+	margin: auto;
+	/* display: inline; */
+}
 nav li{
 	display: inline;
 	margin-right: 5px;
@@ -80,12 +90,15 @@ nav a{
 	color: rgb(0,100,0);
 	text-transform: uppercase;
 	font-size: 18px;
-	text-decoration: underline;
+	text-decoration: none;
+	transition: 0.4s;
 }
 
 a:hover{
 	color: #000;
-	text-decoration: none;
+	font-weight: bold;
+	transition: 0.4s;
+
 }
 
 legend{
@@ -132,9 +145,12 @@ button{
 	display: inline;
 }
 
-#updateMail{
-	display: block;
-	margin: 5px auto;
+#updateMail, .cancel{
+	display: inline-block;
+	margin: auto;
+}
+.stack{
+	text-align: center;
 }
 
 .addTrip{
@@ -142,7 +158,7 @@ button{
 	border: solid black 1px;
 	margin: auto;
 	padding: 5px;
-	width: 60%;
+	width: 80%;
 	border-radius: 3px;
 }
 
@@ -166,6 +182,7 @@ button{
 	margin: auto;
 	padding: 5px 5px;
 	border-radius: 3px;
+	width:80%;
 }
 
 select{
@@ -206,6 +223,7 @@ h2{
 	right:100px;
 	padding: 2px;
 }
+
 
 textarea{
 	display:block;
