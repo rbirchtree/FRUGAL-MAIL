@@ -16,6 +16,7 @@ $(function() {
 		};
 		createLogin(loginInfo);
 		$('.login').show();
+		$('.register').hide();
 
 	});
 
