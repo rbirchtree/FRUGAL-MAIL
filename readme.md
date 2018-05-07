@@ -1,4 +1,4 @@
-#Fru | Frugal Mail
+#Fru | Frugal Mail#
 
 ## Frugal Mail is an web app that helps coordinates pick-ups and drops offs for people who live overseas. It is currently in beta-testing.
 An user first has to register and than login to access the app. Once this has been done the user can post saying they are travelling from the US to China and will 
@@ -20,9 +20,9 @@ take mail to China if is sent to him at his US address. Likewise, a person can a
 3. nodemon server
 
 
-###Live Version###
+### Live Version ###
 https://mysterious-taiga-40006.herokuapp.com/
 
 **Contributors:**
-Rob Birch
-Pat Ford
+1. Rob Birch
+2. Pat Ford
