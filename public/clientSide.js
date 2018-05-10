@@ -50,7 +50,9 @@ $(function() {
 		};
 		createShippingRequest(trip);
 		$('.addTrip').hide();
-		
+			searchMail();
+		$('.tripResults').show();
+		 
 	});
 	$("#cancel").on('click', function(event){
 		event.preventDefault();
@@ -170,7 +172,8 @@ $(function() {
 					j =	j + 1
 					 $('.tripResults').append(`<li data-id="${data[i]._id}"><b># ${j}</b> <br><b>To:</b> ${data[i].toWhere} <br><b>From:</b> ${data[i].fromWhere}<br><b>Trip Date:</b> ${data[i].tripDate} 
 					 	<br><b>Status:</b> ${data[i].mailingTravelingStatus}<br><b>Story:</b> ${data[i].description}<br><b>Address:</b> ${data[i].mailingAddress}
-					  <button class="deletePost">Delete</button><button class="updateTrip">Update</button></li>`);
+					  <div class="stack">
+					  <button class="deletePost">Delete</button><button class="updateTrip">Update</button></div></li>`);
 					//append data length of data + total length to create scroll
 					/*add functions to update and delete//delete just a click button (which is appended and
 					listens to clicks on id) to delete which is an ajax call to delete...update...selects the data*/
