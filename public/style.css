@@ -8,6 +8,7 @@ label, input{
 	border-radius: 3px;
 	text-align:left;
 	margin: 2px auto;
+	font-size: 1.1em;
 }
 
 body{
@@ -16,10 +17,11 @@ body{
 
 .selling {
 	display: inline;
-	color: rgb(124,252,0);
-	text-shadow: 1px 1px black;
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 1.3em;
+	text-align: center;
+	float:right;
+	margin-right: 20px;
 }
 
 
@@ -81,15 +83,15 @@ p{
 }
 
 img{
-	float: right;
+	float: left;
 	padding: 5px;
-	margin-right: 10px;
+	margin-left: 10px;
 }
 
 nav a{
 	color: rgb(0,100,0);
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 1.3em;
 	text-decoration: none;
 	transition: 0.4s;
 }
@@ -141,16 +143,14 @@ button{
 .tripResults label{
 	font-weight: bold;
 }
-.updateTrip{
-	display: inline;
-}
+
 
 #updateMail, .cancel{
 	display: inline-block;
 	margin: auto;
 }
 .stack{
-	text-align: center;
+	margin: auto;
 }
 
 .addTrip{
@@ -160,6 +160,11 @@ button{
 	padding: 5px;
 	width: 80%;
 	border-radius: 3px;
+}
+#addTripButton, #searchTripsButton{
+	width: 450px;
+	height: 50px;
+	padding: 10px;
 }
 
 .addTrip textarea {
@@ -212,16 +217,20 @@ h2{
 
 
 .updateTrip{
-	position: absolute;
-	right:0;
-	padding: 2px;
-	margin-right: 4px; 
+	/* position: absolute; */
+	/* right:0; */
+	padding: 4px;
+	width: 70px;
+	margin-right: 5px; 
+	display: inline;
 }
 
 .deletePost {
-	position: absolute;
-	right:100px;
-	padding: 2px;
+	/* position: absolute; */
+	/* right:100px; */
+	width: 70px;
+	padding: 5px;
+	display: inline
 }
 
 
@@ -229,4 +238,16 @@ textarea{
 	display:block;
 	padding: 5px;
 	margin: auto;
+}
+
+@media only screen and (max-width: 640px) {
+  /* label, input,h1, h2, li, p, sellingfontsize? buttons stuff 3 columns, 3/12 in % */
+  /*update trip button*/
+  .selling {
+  	display: none;
+  }
+  nav {
+  	width: 101%;
+  }
+  }
 }
