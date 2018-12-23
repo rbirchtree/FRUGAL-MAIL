@@ -23,7 +23,6 @@ router.post('/login', localAuth, (req, res) => {
   console.log("success login?")
   console.log(authToken)
   res.json({authToken});
-  //res.json({success:true, token: 'bearer' + token})
 });
 
 const jwtAuth = passport.authenticate('jwt', {session: false});

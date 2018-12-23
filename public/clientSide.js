@@ -1,6 +1,6 @@
 $(function() {
 	let currentUser;
-	let mailID
+	let mailID;
 	$('#logout').css('visibility','hidden');
 	$('.choices').hide();
 	$('.addTrip').hide();
@@ -135,19 +135,15 @@ $(function() {
 
 	function deleteMail(mailID){
 		let token = localStorage.getItem("authToken");
-		console.log(mailID,'token',token);
 		$.ajax({
 			type: "DELETE",
 			url: `newmail/${mailID}` ,
-			/*data: id??? from query sellector*/
 			headers:{
 				'Authorization': `Bearer ${token}`,
 				'content-type' :'application/json'
 			}
 		}).done(function(response){
-			console.log("trip was deleted")
 		}).fail(function(err){
-			console.log('trip was not deleted');
 		});
 	}
 
@@ -231,7 +227,6 @@ $(function() {
 
 	function login(userName, password) {
 		const userInfo = JSON.stringify({username: userName, password: password });
-		console.log(userInfo);
 		$.ajax({
 			method: "POST",
 			url: "api/auth/login",
@@ -245,7 +240,6 @@ $(function() {
 	    success: function(response){
 	    }
 		})
-		//authtoken is sent automatically via route//now show protect api
 		.done(function(msg) {
 			localStorage.setItem('authToken', msg.authToken);
 			$('#logout').css('visibility','visible');
@@ -256,7 +250,6 @@ $(function() {
 	function createLogin(loginInfo) {
 
 		const userInfo = JSON.stringify(loginInfo);
-		console.log(userInfo);
 		$.ajax({
 			method: "POST",
 			url: "api/users",
@@ -266,7 +259,6 @@ $(function() {
 	    			}
 		})
 		.done(function(msg) {
-			console.log('data saved');
 		});
 
 	}
