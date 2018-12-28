@@ -197,7 +197,7 @@ describe('Auth endpoints', function () {
           expect(res).to.have.status(401);
         });
     });
-    it('Should return a valid auth token with a newer expiry date', function () {
+    /*it('Should return a valid auth token with a newer expiry date', function () {
       const token = jwt.sign(
         {
           user: {
@@ -234,6 +234,6 @@ describe('Auth endpoints', function () {
           });
           expect(payload.exp).to.be.at.least(decoded.exp);
         });
-    });
+    });*/
   });
 });
