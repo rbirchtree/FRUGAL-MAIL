@@ -20,8 +20,6 @@ router.use(bodyParser.json());
 // The user provides a username and password to login
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
-  console.log("success login?")
-  console.log(authToken)
   res.json({authToken});
 });
 
@@ -33,7 +31,6 @@ router.post('/refresh', jwtAuth, (req, res) => {
   if(!authToken){
   	res.json({authToken});
   } else{
-  	console.log('404')
   	res.json("404")
   }
 });

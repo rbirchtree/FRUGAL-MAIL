@@ -61,7 +61,6 @@ router.get('/',jwtAuth,function(req,res,next){
 	.then(postal => {
 		res.json(postal).end();
 	}).catch( err => {
-		console.error(err);
 		res.status(500).json({error: 'something went terribly wrong'});
 	});
 });

@@ -51,7 +51,11 @@ app.get('/',(req,res) => {
 
 app.get('/about',(req,res) => {
   res.sendFile(__dirname +`/public/about.html`);
-  return res.status(203);
+  return res.send(203);
+});
+
+app.get('/demo',(req,res)=> {
+  return res.send(200);
 });
 
 app.get('/logout', function(req,res){
@@ -61,7 +65,7 @@ app.get('/logout', function(req,res){
 });
 
 app.use('*', (req, res) => {
-  return res.status(404)
+  return res.send(404)
 });
 
 

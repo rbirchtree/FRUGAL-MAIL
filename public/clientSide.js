@@ -25,6 +25,7 @@ $(function() {
 		const userName = $(event.currentTarget).find('#loginName').val();
 		const password = $(event.currentTarget).find('#loginPassword').val();
 		$('.login').hide();
+		$('.demo').hide();
 		$('.register').hide();
 		$('.choices').show();
 		$('#logout').show();
@@ -36,7 +37,12 @@ $(function() {
 		$('.addTrip').show();
 		$('.tripResults').hide();
 	});
-
+	$('.demo').click(function(event){
+		event.preventDefault();
+		$('.login').hide();
+		$('.register').hide();
+		$('.choices').show();
+	});
 	$('.addTrip').submit(event => {
 		event.preventDefault();
 		let trip = {
