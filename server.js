@@ -44,28 +44,26 @@ app.use('/newmail/', mailRouter);
 app.get('/',(req,res) => {
   
   res.sendFile(__dirname +`/public/index.html`);
-  return res.status(200);
+  return res.sendStatus(200);
   
 });
 
 
 app.get('/about',(req,res) => {
-  res.sendFile(__dirname +`/public/about.html`);
-  return res.send(203);
+  return res.sendFile(__dirname +`/public/about.html`);
 });
 
 app.get('/demo',(req,res)=> {
-  return res.send(200);
+  return res.sendStatus(200);
 });
 
 app.get('/logout', function(req,res){
+  res.redirect('/');
   req.logout();
-  res.sendFile(__dirname + '/public/index.html');
-  return res.status(200);
 });
 
 app.use('*', (req, res) => {
-  return res.send(404)
+  return res.sendStatus(404)
 });
 
 
