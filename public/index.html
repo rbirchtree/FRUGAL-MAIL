@@ -1,87 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
-	<title>FRU | Frugal Mail</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> 
-	<script type="text/javascript" src="clientSide.js"></script>
+	<title>Frugal Mail</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+	<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet'>
+	<link rel='stylesheet' type='text/css' href='style.css'>
+	<link rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png'>
+	<link rel='icon' type='image/png' sizes='16x16' href='favicon-16x16.png'>
+	<script src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js'></script> 
+	<script type='text/javascript' src='clientSide.js'></script>
 </head>
 <body>
 	<nav>
 
-		<a href="/"><img src="green-mail-icon.png"></a>
+		<a href='/'><img src='green-mail-icon.png'></a>
 			<ul>
-				<li><a href="/about">About</a></li>
-				<li id="logout"><a href="/logout">Log Out</a></li>
-				<li class="selling">Coordinating Mailings to Expats by Expats Overseas!</p>
+				<li><a href='/about'>About Frugal Mail</a></li>
+				<li id='logout'><a href='/logout'>Log Out</a></li>
+				<li class='selling'>Free International Delivery!</li>
 			</ul>
-			
-	</nav>
-	
-	<div class="container">
-		<a class="demo" href="/">Demo</a>
-		<form class="login">
-			<legend>Login</legend>
+			<form class='login'>
 			<label>User Name</label>
-				<input id="loginName" placeholder="User Name"></input>
+				<input id='loginName' placeholder='User Name'></input>
 			<label>Password</label>
-				<input id="loginPassword" placeholder="Password" type="password"></input>
+				<input id='loginPassword' placeholder='Password' type='password'></input>
 			<button>Log in</button>
 		</form>		
+	</nav>
+	
+	<div class='container'>
+		<a class='demo' href='/'>Demo</a>
 
-		<form class="register">
+		<form class='register'>
 			<legend>Register</legend>
 			<label>User Name</label>
-				<input id="username" placeholder="User Name"></input>
+				<input id='username' placeholder='User Name'></input>
 			<label>Password</label>
-				<input id="password" placeholder="Password" type="password"></input>
+				<input id='password' placeholder='Password' type='password'></input>
 			<label>First Name</label>
-				<input id="firstName" placeholder="First Name"></input>
+				<input id='firstName' placeholder='First Name'></input>
 			<label>Last Name</label>
-				<input id="lastName" placeholder="Last Name"></input>
+				<input id='lastName' placeholder='Last Name'></input>
 			<button>Register</button>
 		</form>
 		
-		<div class="choices">
-			<button id="addTripButton">Add New Travel/Mail</button>
-			<button id="searchTripsButton">Search All Travel/Mail</button>
+		<div class='choices'>
+			<button id='addTripButton'>Add New Travel/Mail</button>
+			<button id='searchTripsButton'>Search All Travel/Mail</button>
 		</div>
-		<form class="addTrip">
+		<form class='addTrip'>
 			<h2>Are You Mailing or Traveling Overseas?</h2>
-			<select name="status" id="mailingTraveling" required>
-				<option value="1">Traveling</option>
-				<option value="2">Mailing</option>
+			<select name='status' id='mailingTraveling' required>
+				<option value='1'>Traveling</option>
+				<option value='2'>Mailing</option>
 			</select>
 			<br>
-			<label for="addTripDate">Trip Date</label>
-			<input id="addTripDate" type="date" ></input>
+			<label for='addTripDate'>Trip Date</label>
+			<input id='addTripDate' type='date' ></input>
 			<!-- make drop down later with locations  -->
 			<br>
-			<label for="addTripFrom">From</label>
-			<input id="addTripFrom" placeholder="Dallas, TX"></input>
+			<label for='addTripFrom'>From</label>
+			<input id='addTripFrom' placeholder='Dallas, TX'></input>
 			<br>
 			<!-- make drop down later with locations  -->
-			<label for="addTripTo">To</label>
-			<input id="addTripTo" placeholder="Kunming, China"></input>
+			<label for='addTripTo'>To</label>
+			<input id='addTripTo' placeholder='Kunming, China'></input>
 			<br>
-			<label for="addTripMailingAddress">Mailing Address</label>
-			<textarea id="addTripMailingAddress" rows="5" cols="30" name="address">Mailing address of person TRAVELING or China MAILING address of person who receives mail in China</textarea>
+			<label for='addTripMailingAddress'>Mailing Address</label>
+			<textarea id='addTripMailingAddress' rows='5' cols='30' name='address'>Mailing address of person TRAVELING or China MAILING address of person who receives mail in China</textarea>
 			<br>
-			<label for="description">Description of Trip/Mail</label>
-			<textarea rows="5" cols="30" name="description" id="addTripBackStory">Trip itinerary to determine drop offs for person TRAVELLING or reason for MAILING package. Also what do do if no transfer happens with package.
+			<label for='description'>Description of Trip/Mail</label>
+			<textarea rows='5' cols='30' name='description' id='addTripBackStory'>Trip itinerary to determine drop offs for person TRAVELLING or reason for MAILING package. Also what do do if no transfer happens with package.
 			</textarea>
 			<br>
-			<button type="submit">Add trip</button>
-			<button type="submit" id="cancel">Cancel</button>
-			<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else "no trip coming up, check again later" -->
+			<button type='submit'>Add trip</button>
+			<button type='submit' id='cancel'>Cancel</button>
+			<!-- regex to search mongodb for similar cities for to cities than append to document in array and return _id with trip info if not past three days, else 'no trip coming up, check again later' -->
 		</form>
 	
-		<ul class="tripResults">
+		<ul class='tripResults'>
 			<!-- return all results for now, no need to create a text search yet -->
 		</ul>			
 	</div>

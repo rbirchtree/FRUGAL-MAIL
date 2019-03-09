@@ -1,22 +1,26 @@
 * {	
-	-webkit-box-sizing:border-box;
-	box-sizing: border:border-box;
+	box-sizing: border-box;
+	font-family: 'PT Mono', monospace;
 }   
 
-label, input{
-	display: block;
+.login label, .login input{
+	display: inline;
 	border-radius: 3px;
 	text-align:left;
-	margin: 2px auto;
+	margin: 2px 30px;
 	font-size: 1.1em;
-	width:80%
+	width:20%;
+	list-style: none;
 }
 
-body{
-	margin:0;
+html {
+	margin: 0 auto;
+	background-image: url('postcard.jpeg');
+	background-repeat:no-repeat;
+	background-size: cover;
 }
 
-a{
+a {
 	text-decoration: none;
 	color: black;
 }
@@ -30,9 +34,8 @@ a{
 	margin-right: 20px;
 }
 
-
-h1{
-	color: rgb(124,252,0);
+h1 {
+	color: #228b22;;
 	text-shadow: 1px 1px black;
 	text-transform: uppercase;
 	text-align: center;
@@ -44,6 +47,7 @@ nav {
 	min-height: 130px;
 	width:101%;
 	margin-bottom: 5px;
+	background-color: white;
 }
 
 li {
@@ -51,15 +55,15 @@ li {
 	padding: 2px;
 }
 
-nav ul{
+nav ul {
 	margin: 50px 0;
 	text-align: left;
 }
-.info{
+
+.info {
 	margin: auto;
-	/* display: inline; */
 }
-nav li{
+nav li {
 	display: inline;
 	margin-right: 5px;
 } 
@@ -80,21 +84,27 @@ p,h1 {
 	text-align: left;
 }
 
-p{
+p {
 	font-size:1.2em;
 }
 
 .content-format {
 	padding: 10px;
+	background-color: white;
+	border: solid black 3px;
+	border-radius: 3px;
+	opacity: .8;
+	width:50%;
+	margin: 0 auto;
 }
 
-img{
+img {
 	float: left;
 	padding: 5px;
 	margin-left: 10px;
 }
 
-nav a{
+nav a {
 	color: rgb(0,100,0);
 	text-transform: uppercase;
 	font-size: 1.3em;
@@ -102,38 +112,40 @@ nav a{
 	transition: 0.4s;
 }
 
-a:hover{
+a:hover {
 	color: #000;
 	font-weight: bold;
 	transition: 0.4s;
 
 }
 
-legend{
+legend {
 	text-align: center;
 	font-weight: bold;
 	margin-bottom: 2px;
 }
 
-.container{
-	width: 80%;
-	margin: 0 auto;
-}
-
-.login, .register{
+.register {
 	border: solid black 1px;
 	border-radius: 3px;
 	max-width: 300px;
 	margin: 20px auto 20px auto;
 	background-color: rgb(232,232,232);
 	padding: 5px;
+	display: inline-block;
 }
 
-
-.register button, .login button {
+.login button {
+	display: inline;
+}
+.register button {
 	display:block;
 }
 
+.container {
+	/*width: 80%;*/
+	margin: 0 auto;
+}
 
 button{
 	background-color: rgb(0,100,0);
@@ -144,17 +156,18 @@ button{
 	margin-bottom:10px;
 	max-width:200px;
 	padding: 10px;
+	cursor: pointer;
 }
 
 .tripResults label{
 	font-weight: bold;
 }
 
-
 #updateMail, .cancel{
 	display: inline-block;
 	margin: auto;
 }
+
 .stack{
 	margin: auto;
 }
@@ -167,6 +180,7 @@ button{
 	width: 80%;
 	border-radius: 3px;
 }
+
 #addTripButton, #searchTripsButton{
 	width: 450px;
 	height: 50px;
@@ -220,11 +234,7 @@ h2{
 	position: relative;
 }
 
-
-
 .updateTrip{
-	/* position: absolute; */
-	/* right:0; */
 	padding: 4px;
 	width: 70px;
 	margin-right: 5px; 
@@ -232,8 +242,6 @@ h2{
 }
 
 .deletePost {
-	/* position: absolute; */
-	/* right:100px; */
 	width: 70px;
 	padding: 5px;
 	display: inline
@@ -247,13 +255,11 @@ textarea{
 }
 
 @media only screen and (max-width: 640px) {
-  /* label, input,h1, h2, li, p, sellingfontsize? buttons stuff 3 columns, 3/12 in % */
-  /*update trip button*/
   .selling {
   	display: none;
   }
+
   nav {
   	width: 101%;
-  }
-  }
+     }
 }

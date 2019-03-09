@@ -30,7 +30,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 app.use(morgan('common'));
 
 const { PORT, DATABASE_URL } = require('./config');
-
+console.log('DATABASE_URL',DATABASE_URL);
 app.use(express.static(__dirname +'/public'));
 app.use(express.static(__dirname +'/images'));
 app.use('/api/users/',usersRouter);
@@ -41,16 +41,15 @@ app.use('/newmail/', mailRouter);
 
 
 
-app.get('/',(req,res) => {
-  
-  res.sendFile(__dirname +`/public/index.html`);
+app.get('/',(req,res) => {  
+  res.sendFile(__dirname +'/public/index.html');
   return res.sendStatus(200);
   
 });
 
 
 app.get('/about',(req,res) => {
-  return res.sendFile(__dirname +`/public/about.html`);
+  return res.sendFile(__dirname +'/public/about.html');
 });
 
 app.get('/demo',(req,res)=> {

@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-//let randNum = String(Math.random());
+
 const faker = require('faker');
 const jwt = require('jsonwebtoken');
 const {app, runServer, closeServer} = require('../server');
