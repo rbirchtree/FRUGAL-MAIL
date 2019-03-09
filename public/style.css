@@ -13,11 +13,17 @@
 	list-style: none;
 }
 
+.register input{
+	display: block;
+	margin: 0 auto;
+}
+
 html {
 	margin: 0 auto;
 	background-image: url('postcard.jpeg');
 	background-repeat:no-repeat;
 	background-size: cover;
+	background-attachment: fixed;
 }
 
 a {
@@ -43,11 +49,11 @@ h1 {
 }
 
 nav {
-	border: 1px solid black;
-	min-height: 130px;
-	width:101%;
+	border: 1px solid black; 
+	border-radius: 3px;
 	margin-bottom: 5px;
 	background-color: white;
+	display: block;
 }
 
 li {
@@ -56,16 +62,17 @@ li {
 }
 
 nav ul {
-	margin: 50px 0;
+	/* margin: 50px 0; */
 	text-align: left;
 }
 
 .info {
 	margin: auto;
 }
+
 nav li {
 	display: inline;
-	margin-right: 5px;
+	/* margin-right: 5px; */
 } 
 
 .choices, li{
@@ -100,7 +107,7 @@ p {
 
 img {
 	float: left;
-	padding: 5px;
+	/* padding: 5px; */
 	margin-left: 10px;
 }
 
@@ -132,7 +139,7 @@ legend {
 	margin: 20px auto 20px auto;
 	background-color: rgb(232,232,232);
 	padding: 5px;
-	display: inline-block;
+	display: block;
 }
 
 .login button {
@@ -143,7 +150,6 @@ legend {
 }
 
 .container {
-	/*width: 80%;*/
 	margin: 0 auto;
 }
 
@@ -179,6 +185,7 @@ button{
 	padding: 5px;
 	width: 80%;
 	border-radius: 3px;
+	background-color: white;
 }
 
 #addTripButton, #searchTripsButton{
@@ -210,11 +217,23 @@ button{
 	width:80%;
 }
 
+.row::before,
+.row::after {
+	display: table;
+	content: '';
+}
+
+body{
+	margin: 0;
+}
+.row::after{
+	clear:both;
+}
+
 select{
 	display: block;
 	margin: auto;
 }
-
 
 h2{
 	text-align: center;
@@ -247,6 +266,11 @@ h2{
 	display: inline
 }
 
+.row{
+	max-width: 1000px;
+	padding: 0 20px;
+	margin: 0 auto;
+}
 
 textarea{
 	display:block;
@@ -254,12 +278,26 @@ textarea{
 	margin: auto;
 }
 
+.col-3{
+	width:100%;
+	float:left;
+}
+
 @media only screen and (max-width: 640px) {
   .selling {
   	display: none;
   }
+ .col-3{
+ 	width:33%;
+ }
+ .login label, .login input{
+	display: inline;
+	border-radius: 3px;
+	text-align:left;
+	margin: 2px 30px;
+	font-size: .8em;
+	width:50%;
+	list-style: none;
+}
 
-  nav {
-  	width: 101%;
-     }
 }

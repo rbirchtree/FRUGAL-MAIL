@@ -13,20 +13,26 @@
 </head>
 <body>
 	<nav>
-
-		<a href='/'><img src='green-mail-icon.png'></a>
-			<ul>
-				<li><a href='/about'>About Frugal Mail</a></li>
-				<li id='logout'><a href='/logout'>Log Out</a></li>
-				<li class='selling'>Free International Delivery!</li>
-			</ul>
-			<form class='login'>
-			<label>User Name</label>
-				<input id='loginName' placeholder='User Name'></input>
-			<label>Password</label>
-				<input id='loginPassword' placeholder='Password' type='password'></input>
-			<button>Log in</button>
-		</form>		
+		<div class="row">
+		<!-- check formatting -->
+		<div class="col-3">
+			<a href='/'><img src='green-mail-icon.png'></a>
+				<ul>
+					<li><a href='/about'>About Frugal Mail</a></li>
+					<li id='logout'><a href='/logout'>Log Out</a></li>
+					<li class='selling'>Free International Delivery!</li>
+				</ul>
+			</div>
+			<div class="col-3">
+				<form class='login'>
+				<label>User Name</label>
+					<input id='loginName' placeholder='User Name'></input>
+				<label>Password</label>
+					<input id='loginPassword' placeholder='Password' type='password'></input>
+				<button>Log in</button>
+			</form>	
+			</div>
+		</div>	
 	</nav>
 	
 	<div class='container'>

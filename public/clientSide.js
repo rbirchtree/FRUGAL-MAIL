@@ -70,7 +70,7 @@ $(function() {
 	$('.tripResults').on('click','.cancel', function(event){
 		event.preventDefault();
 		return searchMail();
-	})
+	});
 
 	$('#searchTripsButton').click(function()   {
 		$('.addTrip').hide();
@@ -102,9 +102,7 @@ $(function() {
 	$('.tripResults').on('click','.updateTrip', function(event) {
 		event.preventDefault();
 		mailID = $(this).closest('li').attr('data-id');
-		
 		searchMailGetUpadate(mailID);
-		
 	});
 
 	function createShippingRequest(trip) {
@@ -238,7 +236,6 @@ $(function() {
 	      'content-type': 'application/json'
 	    },
 	    failure: function(response){
-	    	
 	    },
 	    success: function(response){
 	    }
