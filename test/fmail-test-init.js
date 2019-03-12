@@ -101,7 +101,7 @@ describe('Frugal-Mail CRUD points', function(){
 		return chai.request(app)
 		.get('/about')
 		.then(res => {
-			res.should.have.status(203);
+			res.should.have.status(200);
 			expect(res).to.be.html;
 		});
 	});
